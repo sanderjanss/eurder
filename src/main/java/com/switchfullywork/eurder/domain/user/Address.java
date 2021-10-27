@@ -29,4 +29,14 @@ public class Address {
     public int getHouseNumber() {
         return houseNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "streetName='" + streetName + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                ", houseNumber=" + houseNumber +
+                '}';
+    }
 }

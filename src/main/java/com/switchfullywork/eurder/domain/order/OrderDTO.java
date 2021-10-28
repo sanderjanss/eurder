@@ -5,15 +5,15 @@ import com.switchfullywork.eurder.domain.item.ItemGroup;
 import java.util.List;
 import java.util.UUID;
 
-public class Order {
+public class OrderDTO {
 
     private final UUID orderId;
     private final UUID customerId;
     private final List<ItemGroup> listOfItemGroups;
     private final double totalPrice;
 
-    public Order(UUID customerId, List<ItemGroup> listOfItemGroups, double totalPrice) {
-        this.orderId = UUID.randomUUID();
+    public OrderDTO(UUID orderId, UUID customerId, List<ItemGroup> listOfItemGroups, double totalPrice) {
+        this.orderId = orderId;
         this.customerId = customerId;
         this.listOfItemGroups = listOfItemGroups;
         this.totalPrice = totalPrice;
@@ -35,32 +35,35 @@ public class Order {
         return totalPrice;
     }
 
+    public static class OrderDTOBuilder{
 
-    public static class OrderBuilder{
-
+        private UUID orderId;
         private UUID customerId;
         private List<ItemGroup> listOfItemGroups;
         private double totalPrice;
 
+        public OrderDTOBuilder setOrderId(UUID orderId) {
+            this.orderId = orderId;
+            return this;
+        }
 
-
-        public OrderBuilder setCustomerId(UUID customerId) {
+        public OrderDTOBuilder setCustomerId(UUID customerId) {
             this.customerId = customerId;
             return this;
         }
 
-        public OrderBuilder setListOfItemGroups(List<ItemGroup> listOfItemGroups) {
+        public OrderDTOBuilder setListOfItemGroups(List<ItemGroup> listOfItemGroups) {
             this.listOfItemGroups = listOfItemGroups;
             return this;
         }
 
-        public OrderBuilder setTotalPrice(double totalPrice) {
+        public OrderDTOBuilder setTotalPrice(double totalPrice) {
             this.totalPrice = totalPrice;
             return this;
         }
 
-        public Order build(){
-            return new Order(this.customerId, this.listOfItemGroups, this.totalPrice);
+        public OrderDTO build(){
+            return new OrderDTO(this.orderId, this.customerId, this.listOfItemGroups, this.totalPrice);
         }
     }
 }

@@ -39,4 +39,36 @@ public class Address {
                 ", houseNumber=" + houseNumber +
                 '}';
     }
+
+    public static class AddressBuilder{
+
+        private String streetName;
+        private String postalCode;
+        private String city;
+        private int houseNumber;
+
+        public AddressBuilder setStreetName(String streetName) {
+            this.streetName = streetName;
+            return this;
+        }
+
+        public AddressBuilder setPostalCode(String postalCode) {
+            this.postalCode = postalCode;
+            return this;
+        }
+
+        public AddressBuilder setCity(String city) {
+            this.city = city;
+            return this;
+        }
+
+        public AddressBuilder setHouseNumber(int houseNumber) {
+            this.houseNumber = houseNumber;
+            return this;
+        }
+
+        public Address build(){
+            return new Address(this.streetName, this.postalCode, this.city, this.houseNumber);
+        }
+    }
 }

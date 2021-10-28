@@ -35,7 +35,7 @@ public class DefaultUserService implements UserService {
             throw new NoAuthorizationException("You are not authorized to do this action.");
         }
         User user = userMapper.toUser(customer);
-        if(!userRepository.contains(user)){
+        if(userRepository.contains(user)){
             throw new UserAllreadyExistsException("This emailaddress is allready registered.");
         }
         userRepository.registerCustomer(user);
@@ -43,7 +43,6 @@ public class DefaultUserService implements UserService {
 
     public List<UserDTO> getAllCustomers(UUID adminId, UUID memberId){
         assertValidUser(adminId);
-        assertValidUser(memberId);
         assertAuthorizedUser(adminId);
 
         return userMapper.toDtoList(userRepository.getAllCustomers(memberId));

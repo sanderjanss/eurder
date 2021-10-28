@@ -4,12 +4,9 @@ import com.switchfullywork.eurder.exceptions.InvalidUserException;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import java.util.Objects;
-import java.util.UUID;
 
-public class User {
+public class CreateUserDTO {
 
-    private final UUID userId;
     private final String firstName;
     private final String lastName;
     private final String emailAddress;
@@ -17,18 +14,13 @@ public class User {
     private final String phoneNumber;
     private final Role role;
 
-    public User(String firstName, String lastName, String emailAddress, Address address, String phoneNumber, Role role) {
-        this.userId = UUID.randomUUID();
+    public CreateUserDTO(String firstName, String lastName, String emailAddress, Address address, String phoneNumber, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.emailAddress = emailAddress;
+        this.emailAddress = isValidEmailAddress(emailAddress);
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.role = role;
-    }
-
-    public UUID getUserId() {
-        return userId;
     }
 
     public String getFirstName() {
@@ -55,20 +47,18 @@ public class User {
         return role;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(emailAddress, user.emailAddress);
+    public String isValidEmailAddress(String email) {
+        try {
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            throw new InvalidUserException("Not a valid email address");
+        }
+        return email;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(emailAddress);
-    }
+    public static class CreateUserDTOBuilder {
 
-    public static class UserBuilder {
 
         private String firstName;
         private String lastName;
@@ -78,53 +68,39 @@ public class User {
         private Role role;
 
 
-        public UserBuilder setFirstName(String firstName) {
+        public CreateUserDTOBuilder setFirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-        public UserBuilder setLastName(String lastName) {
+        public CreateUserDTOBuilder setLastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
 
-        public UserBuilder setEmailAddress(String emailAddress) {
+        public CreateUserDTOBuilder setEmailAddress(String emailAddress) {
             this.emailAddress = emailAddress;
             return this;
         }
 
-        public UserBuilder setAddress(Address address) {
+        public CreateUserDTOBuilder setAddress(Address address) {
             this.address = address;
             return this;
         }
 
-        public UserBuilder setPhoneNumber(String phoneNumber) {
+        public CreateUserDTOBuilder setPhoneNumber(String phoneNumber) {
             this.phoneNumber = phoneNumber;
             return this;
         }
 
-        public UserBuilder setRole(Role role) {
+        public CreateUserDTOBuilder setRole(Role role) {
             this.role = role;
             return this;
         }
 
-        public User build(){
-            return new User(this.firstName, this.lastName, this.emailAddress, this.address, this.phoneNumber, this.role);
+        public CreateUserDTO build() {
+            return new CreateUserDTO(this.firstName, this.lastName, this.emailAddress, this.address, this.phoneNumber, this.role);
         }
 
-    }
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "uuid=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", emailAddress='" + emailAddress + '\'' +
-                ", address=" + address +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", role=" + role +
-                '}';
     }
 }

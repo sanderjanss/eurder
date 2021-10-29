@@ -1,9 +1,5 @@
 package com.switchfullywork.eurder.domain.user;
 
-import com.switchfullywork.eurder.exceptions.InvalidUserException;
-
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -108,7 +104,7 @@ public class User {
             return this;
         }
 
-        public User build(){
+        public User build() {
             return new User(this.firstName, this.lastName, this.emailAddress, this.address, this.phoneNumber, this.role);
         }
 

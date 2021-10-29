@@ -8,7 +8,12 @@ import java.util.UUID;
 public interface UserRepository {
 
     boolean contains(User user);
+
     User findById(UUID id);
+
     void registerCustomer(User user);
+
+    void registerAdmin(User user);
+
     List<User> getAllCustomers(UUID userIdOrNull);
 }

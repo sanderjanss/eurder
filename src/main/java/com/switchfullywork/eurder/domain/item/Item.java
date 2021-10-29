@@ -1,5 +1,6 @@
 package com.switchfullywork.eurder.domain.item;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Item {
@@ -12,6 +13,14 @@ public class Item {
 
     public Item(String name, String description, double price, int amountStock) {
         this.itemId = UUID.randomUUID();
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.amountStock = amountStock;
+    }
+
+    public Item(UUID itemId, String name, String description, double price, int amountStock) {
+        this.itemId = itemId;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -49,7 +58,20 @@ public class Item {
                 '}';
     }
 
-    public static class ItemBuilder{
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Objects.equals(name, item.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    public static class ItemBuilder {
 
         private String name;
         private String description;
@@ -76,7 +98,7 @@ public class Item {
             return this;
         }
 
-        public Item build(){
+        public Item build() {
             return new Item(this.name, this.description, this.price, this.amountStock);
         }
     }

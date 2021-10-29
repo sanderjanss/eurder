@@ -36,12 +36,11 @@ public class Order {
     }
 
 
-    public static class OrderBuilder{
+    public static class OrderBuilder {
 
         private UUID customerId;
         private List<ItemGroup> listOfItemGroups;
         private double totalPrice;
-
 
 
         public OrderBuilder setCustomerId(UUID customerId) {
@@ -59,7 +58,7 @@ public class Order {
             return this;
         }
 
-        public Order build(){
+        public Order build() {
             return new Order(this.customerId, this.listOfItemGroups, this.totalPrice);
         }
     }

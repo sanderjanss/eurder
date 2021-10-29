@@ -48,7 +48,7 @@ public class CreateItemGroupDTO {
             return this;
         }
 
-        public CreateItemGroupDTO build(){
+        public CreateItemGroupDTO build() {
             return new CreateItemGroupDTO(this.itemId, this.amount, this.shippingDate);
         }
     }

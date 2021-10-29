@@ -35,7 +35,7 @@ public class OrderDTO {
         return totalPrice;
     }
 
-    public static class OrderDTOBuilder{
+    public static class OrderDTOBuilder {
 
         private UUID orderId;
         private UUID customerId;
@@ -62,7 +62,7 @@ public class OrderDTO {
             return this;
         }
 
-        public OrderDTO build(){
+        public OrderDTO build() {
             return new OrderDTO(this.orderId, this.customerId, this.listOfItemGroups, this.totalPrice);
         }
     }

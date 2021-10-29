@@ -54,7 +54,7 @@ public class OrderMapper {
     }
 
     public LocalDate calculateShippingDate(CreateItemGroupDTO createItemGroupDTO) {
-        if(itemRepository.getById(createItemGroupDTO.getItemId()).getAmountStock() > createItemGroupDTO.getAmount()){
+        if (itemRepository.getById(createItemGroupDTO.getItemId()).getAmountStock() > createItemGroupDTO.getAmount()) {
             return createItemGroupDTO.getShippingDate().plusDays(1);
         }
         return createItemGroupDTO.getShippingDate().plusDays(7);

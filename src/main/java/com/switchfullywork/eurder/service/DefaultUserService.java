@@ -27,21 +27,21 @@ public class DefaultUserService implements UserService {
         this.userMapper = userMapper;
     }
 
-    public void registerCustomer(CreateUserDTO customer){
-        if(customer == null){
+    public void registerCustomer(CreateUserDTO customer) {
+        if (customer == null) {
             throw new InvalidUserException("Invalid user.");
         }
-        if(customer.getRole() != Role.CUSTOMER){
+        if (customer.getRole() != Role.CUSTOMER) {
             throw new NoAuthorizationException("You are not authorized to do this action.");
         }
         User user = userMapper.toUser(customer);
-        if(userRepository.contains(user)){
+        if (userRepository.contains(user)) {
             throw new UserAllreadyExistsException("This emailaddress is allready registered.");
         }
         userRepository.registerCustomer(user);
     }
 
-    public List<UserDTO> getAllCustomers(UUID adminId, UUID memberId){
+    public List<UserDTO> getAllCustomers(UUID adminId, UUID memberId) {
         assertValidUser(adminId);
         assertAuthorizedUser(adminId);
 
@@ -49,13 +49,14 @@ public class DefaultUserService implements UserService {
     }
 
 
-    private void assertValidUser(UUID userId){
-        if(userRepository.findById(userId) == null){
+    private void assertValidUser(UUID userId) {
+        if (userRepository.findById(userId) == null) {
             throw new InvalidUserException("This account is not part of the database.");
         }
     }
-    private void assertAuthorizedUser(UUID userId){
-        if(userRepository.findById(userId).getRole() != Role.ADMIN){
+
+    private void assertAuthorizedUser(UUID userId) {
+        if (userRepository.findById(userId).getRole() != Role.ADMIN) {
             throw new NoAuthorizationException("You are not authorized to do this action.");
         }
     }

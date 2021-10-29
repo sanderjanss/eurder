@@ -2,6 +2,8 @@ package com.switchfullywork.eurder.controller;
 
 import com.switchfullywork.eurder.domain.order.CreateOrderDTO;
 import com.switchfullywork.eurder.service.OrderService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     private final OrderService orderService;
+    public final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     @Autowired
     public OrderController(OrderService orderService) {
@@ -19,7 +22,9 @@ public class OrderController {
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerOrder(@RequestBody CreateOrderDTO createOrderDTO){
+    public void registerOrder(@RequestBody CreateOrderDTO createOrderDTO) {
+        logger.info("Registering Order.");
         orderService.registerOrder(createOrderDTO);
+        logger.info("Order registered.");
     }
 }

@@ -33,11 +33,11 @@ public class ItemGroup {
         return shippingDate;
     }
 
-    private LocalDate calulateShippingDate(LocalDate shippingDate){
+    private LocalDate calulateShippingDate(LocalDate shippingDate) {
         return shippingDate;
     }
 
-    public static class ItemGroupBuilder{
+    public static class ItemGroupBuilder {
 
         private UUID itemid;
         private int amount;
@@ -58,7 +58,7 @@ public class ItemGroup {
             return this;
         }
 
-        public ItemGroup build(){
+        public ItemGroup build() {
             return new ItemGroup(this.itemid, this.amount, this.shippingDate);
         }
     }

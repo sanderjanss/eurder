@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.UUID;
 
 
-
 public class DefaultOrderServiceTest {
 
 
@@ -47,7 +46,7 @@ public class DefaultOrderServiceTest {
     private Item invalidItem;
 
     @BeforeEach
-    public void before(){
+    public void before() {
         orderRepository = new DefaultOrderRepository();
         userRepository = new DefaultUserRepository();
         itemRepository = new DefaultItemRepository();
@@ -131,17 +130,17 @@ public class DefaultOrderServiceTest {
     }
 
     @Test
-    public void givenTestOrderDatabase_whenRegisteredOrderIsNull_ThenThrowInvalidOrderException(){
+    public void givenTestOrderDatabase_whenRegisteredOrderIsNull_ThenThrowInvalidOrderException() {
         Assertions.assertThatThrownBy(() -> orderService.registerOrder(null)).isInstanceOf(InvalidOrderException.class);
     }
 
     @Test
-    public void givenTestOrderDatabase_whenOrderCustomerIdDoesntMatchAnIdFromTheUserDatabase_ThenThrowInvalidUserException(){
+    public void givenTestOrderDatabase_whenOrderCustomerIdDoesntMatchAnIdFromTheUserDatabase_ThenThrowInvalidUserException() {
         Assertions.assertThatThrownBy(() -> orderService.registerOrder(invalidOrder1DTO)).isInstanceOf(InvalidUserException.class);
     }
 
     @Test
-    public void givenTestOrderDatabase_whenOrderItemIdDoesntMatchAnIdFromTheItemDatabase_ThenThrowInvalidItemException(){
+    public void givenTestOrderDatabase_whenOrderItemIdDoesntMatchAnIdFromTheItemDatabase_ThenThrowInvalidItemException() {
         Assertions.assertThatThrownBy(() -> orderService.registerOrder(invalidOrder2DTO)).isInstanceOf(InvalidItemException.class);
     }
 
@@ -160,9 +159,6 @@ public class DefaultOrderServiceTest {
 //    public void givenTestOrderDatabase_whenItemInStock_thenSetShippingDatePlusOne(){
 //
 //    }
-
-
-
 
 
 }

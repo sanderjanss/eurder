@@ -3,7 +3,6 @@ package com.switchfullywork.eurder.repository;
 import com.switchfullywork.eurder.domain.user.Address;
 import com.switchfullywork.eurder.domain.user.Role;
 import com.switchfullywork.eurder.domain.user.User;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +24,7 @@ class DefaultUserRepositoryTest {
     private User admin1;
 
     @BeforeEach
-    public void before(){
+    public void before() {
         userRepository = new DefaultUserRepository();
         Address address1 = new Address("LegendStreet", "2000", "Antwerp", 1);
         Address address2 = new Address("SpookyStreet", "2000", "Antwerp", 1);
@@ -37,7 +36,7 @@ class DefaultUserRepositoryTest {
     }
 
     @Test
-    public void givenATestUserRepository_whenRegisteringValidCustomersAndNoCustomerIdIsProvided_thenReturnAllCustomersFromDatabase(){
+    public void givenATestUserRepository_whenRegisteringValidCustomersAndNoCustomerIdIsProvided_thenReturnAllCustomersFromDatabase() {
         //when
         userRepository.registerCustomer(customer1);
         userRepository.registerCustomer(customer2);
@@ -48,7 +47,7 @@ class DefaultUserRepositoryTest {
     }
 
     @Test
-    public void givenATestUserRepository_whenRegisteringValidCustomers_whenProvidedAValidCustomerId_thenReturnValidCustomer(){
+    public void givenATestUserRepository_whenRegisteringValidCustomers_whenProvidedAValidCustomerId_thenReturnValidCustomer() {
         //when
         userRepository.registerCustomer(customer1);
         userRepository.registerCustomer(customer2);
@@ -56,10 +55,6 @@ class DefaultUserRepositoryTest {
         //then
         Assertions.assertEquals(userRepository.getAllCustomers(customer2.getUserId()), List.of(customer2));
     }
-
-
-
-
 
 
 }

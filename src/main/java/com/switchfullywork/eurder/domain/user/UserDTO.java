@@ -94,7 +94,7 @@ public class UserDTO {
             return this;
         }
 
-        public UserDTO build(){
+        public UserDTO build() {
             return new UserDTO(this.userId, this.firstName, this.lastName, this.emailAddress, this.address, this.phoneNumber, this.role);
         }
 

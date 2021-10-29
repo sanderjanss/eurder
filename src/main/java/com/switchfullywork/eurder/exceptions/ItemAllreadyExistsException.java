@@ -3,10 +3,10 @@ package com.switchfullywork.eurder.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.BAD_REQUEST)
-public class InvalidOrderException extends RuntimeException {
+@ResponseStatus(HttpStatus.FORBIDDEN)
+public class ItemAllreadyExistsException extends RuntimeException {
 
-    public InvalidOrderException(String message) {
+    public ItemAllreadyExistsException(String message) {
         super(message);
     }
 }

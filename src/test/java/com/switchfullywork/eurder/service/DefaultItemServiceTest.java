@@ -21,8 +21,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 @RunWith(SpringRunner.class)
 class DefaultItemServiceTest {
@@ -39,7 +37,7 @@ class DefaultItemServiceTest {
 
 
     @BeforeEach
-    public void before(){
+    public void before() {
         itemRepository = new DefaultItemRepository();
         userRepository = new DefaultUserRepository();
         itemMapper = new ItemMapper();
@@ -53,22 +51,22 @@ class DefaultItemServiceTest {
     }
 
     @Test
-    public void givenTestItemDatabase_whenUserWithoutAuthorizationRegistersItem_ThenThrowNewNoAuthorizationException(){
-        Assertions.assertThatThrownBy(()->
-                itemService.registerItem(createItemDTO1, customer.getUserId()))
+    public void givenTestItemDatabase_whenUserWithoutAuthorizationRegistersItem_ThenThrowNewNoAuthorizationException() {
+        Assertions.assertThatThrownBy(() ->
+                        itemService.registerItem(createItemDTO1, customer.getUserId()))
                 .isInstanceOf(NoAuthorizationException.class);
     }
 
     @Test
-    public void givenTestItemDatabase_whenAdminRegistersNullItem_ThenThrowNewInvalidItemException(){
-        Assertions.assertThatThrownBy(()->
+    public void givenTestItemDatabase_whenAdminRegistersNullItem_ThenThrowNewInvalidItemException() {
+        Assertions.assertThatThrownBy(() ->
                         itemService.registerItem(null, customer.getUserId()))
                 .isInstanceOf(InvalidItemException.class);
     }
 
     @Test
-    public void givenTestItemDatabase_whenUserWithInvalidIdRegistersItem_ThenThrowNewInvaliduserException(){
-        Assertions.assertThatThrownBy(()->
+    public void givenTestItemDatabase_whenUserWithInvalidIdRegistersItem_ThenThrowNewInvaliduserException() {
+        Assertions.assertThatThrownBy(() ->
                         itemService.registerItem(createItemDTO1, UUID.randomUUID()))
                 .isInstanceOf(InvalidUserException.class);
     }

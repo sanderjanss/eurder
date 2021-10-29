@@ -1,7 +1,5 @@
 package com.switchfullywork.eurder.domain.item;
 
-import java.util.UUID;
-
 public class CreateItemDTO {
 
     private final String name;
@@ -42,7 +40,7 @@ public class CreateItemDTO {
                 '}';
     }
 
-    public static class CreateItemDTOBuilder{
+    public static class CreateItemDTOBuilder {
 
         private String name;
         private String description;
@@ -69,7 +67,7 @@ public class CreateItemDTO {
             return this;
         }
 
-        public CreateItemDTO build(){
+        public CreateItemDTO build() {
             return new CreateItemDTO(this.name, this.description, this.price, this.amountStock);
         }
     }

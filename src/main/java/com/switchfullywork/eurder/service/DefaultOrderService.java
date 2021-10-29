@@ -1,8 +1,6 @@
 package com.switchfullywork.eurder.service;
 
 import com.switchfullywork.eurder.domain.item.CreateItemGroupDTO;
-import com.switchfullywork.eurder.domain.item.Item;
-import com.switchfullywork.eurder.domain.item.ItemGroup;
 import com.switchfullywork.eurder.domain.order.CreateOrderDTO;
 import com.switchfullywork.eurder.exceptions.InvalidItemException;
 import com.switchfullywork.eurder.exceptions.InvalidOrderException;
@@ -15,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DefaultOrderService implements OrderService{
+public class DefaultOrderService implements OrderService {
 
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
@@ -30,12 +28,12 @@ public class DefaultOrderService implements OrderService{
         this.itemRepository = itemRepository;
     }
 
-    public void registerOrder(CreateOrderDTO createOrderDTO){
-        if(createOrderDTO == null){
+    public void registerOrder(CreateOrderDTO createOrderDTO) {
+        if (createOrderDTO == null) {
             throw new InvalidOrderException("Not a valid Order.");
         }
 
-        if(userRepository.findById(createOrderDTO.getCustomerId())==null){
+        if (userRepository.findById(createOrderDTO.getCustomerId()) == null) {
             throw new InvalidUserException("Not a valid User.");
         }
         for (CreateItemGroupDTO itemGroup : createOrderDTO.getListOfItemGroups()) {

@@ -9,5 +9,6 @@ import java.util.UUID;
 public interface UserService {
 
     void registerCustomer(CreateUserDTO user);
+
     List<UserDTO> getAllCustomers(UUID adminId, UUID memberId);
 }

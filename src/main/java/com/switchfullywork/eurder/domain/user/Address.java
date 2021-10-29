@@ -40,7 +40,7 @@ public class Address {
                 '}';
     }
 
-    public static class AddressBuilder{
+    public static class AddressBuilder {
 
         private String streetName;
         private String postalCode;
@@ -67,7 +67,7 @@ public class Address {
             return this;
         }
 
-        public Address build(){
+        public Address build() {
             return new Address(this.streetName, this.postalCode, this.city, this.houseNumber);
         }
     }

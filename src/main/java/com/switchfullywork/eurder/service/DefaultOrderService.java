@@ -1,7 +1,10 @@
 package com.switchfullywork.eurder.service;
 
+import com.switchfullywork.eurder.domain.item.CreateItemGroupDTO;
 import com.switchfullywork.eurder.domain.item.Item;
+import com.switchfullywork.eurder.domain.item.ItemGroup;
 import com.switchfullywork.eurder.domain.order.CreateOrderDTO;
+import com.switchfullywork.eurder.exceptions.InvalidItemException;
 import com.switchfullywork.eurder.exceptions.InvalidOrderException;
 import com.switchfullywork.eurder.exceptions.InvalidUserException;
 import com.switchfullywork.eurder.mappers.OrderMapper;
@@ -34,6 +37,11 @@ public class DefaultOrderService implements OrderService{
 
         if(userRepository.findById(createOrderDTO.getCustomerId())==null){
             throw new InvalidUserException("Not a valid User.");
+        }
+        for (CreateItemGroupDTO itemGroup : createOrderDTO.getListOfItemGroups()) {
+            if (!itemRepository.contains(itemGroup.getItemId())) {
+                throw new InvalidItemException("Not a valid Item");
+            }
         }
 
         orderRepository.registerOrder(orderMapper.toOrder(createOrderDTO));

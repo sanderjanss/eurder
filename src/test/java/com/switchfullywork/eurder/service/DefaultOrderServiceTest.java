@@ -6,35 +6,32 @@ import com.switchfullywork.eurder.domain.order.CreateOrderDTO;
 import com.switchfullywork.eurder.domain.user.Address;
 import com.switchfullywork.eurder.domain.user.Role;
 import com.switchfullywork.eurder.domain.user.User;
+import com.switchfullywork.eurder.exceptions.InvalidItemException;
 import com.switchfullywork.eurder.exceptions.InvalidOrderException;
 import com.switchfullywork.eurder.exceptions.InvalidUserException;
 import com.switchfullywork.eurder.mappers.OrderMapper;
 import com.switchfullywork.eurder.repository.*;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
+
+
 public class DefaultOrderServiceTest {
 
-    @Autowired
+
     private OrderRepository orderRepository;
-    @Autowired
+
     private UserRepository userRepository;
-    @Autowired
+
     private OrderService orderService;
-    @Autowired
+
     private ItemRepository itemRepository;
-    @Autowired
+
     private OrderMapper orderMapper;
 
     private CreateOrderDTO validOrderDTO;
@@ -145,7 +142,7 @@ public class DefaultOrderServiceTest {
 
     @Test
     public void givenTestOrderDatabase_whenOrderItemIdDoesntMatchAnIdFromTheItemDatabase_ThenThrowInvalidItemException(){
-        Assertions.assertThatThrownBy(() -> orderService.registerOrder(invalidOrder2DTO)).isInstanceOf(InvalidUserException.class);
+        Assertions.assertThatThrownBy(() -> orderService.registerOrder(invalidOrder2DTO)).isInstanceOf(InvalidItemException.class);
     }
 
 //    @Test

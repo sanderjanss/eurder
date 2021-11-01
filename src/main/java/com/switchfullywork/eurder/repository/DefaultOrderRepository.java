@@ -19,5 +19,13 @@ public class DefaultOrderRepository implements OrderRepository {
     @Override
     public void registerOrder(Order order) {
         orderByIdDatabase.put(order.getOrderId(), order);
+
+    }
+
+    @Override
+    public Order getOrder(UUID customerId) {
+        return orderByIdDatabase.values().stream()
+                .filter(order -> order.getCustomerId().equals(customerId))
+                .findAny().get();
     }
 }

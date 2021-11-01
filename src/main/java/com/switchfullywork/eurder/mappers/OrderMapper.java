@@ -2,8 +2,10 @@ package com.switchfullywork.eurder.mappers;
 
 import com.switchfullywork.eurder.domain.item.CreateItemGroupDTO;
 import com.switchfullywork.eurder.domain.item.ItemGroup;
+import com.switchfullywork.eurder.domain.item.ItemGroupDTO;
 import com.switchfullywork.eurder.domain.order.CreateOrderDTO;
 import com.switchfullywork.eurder.domain.order.Order;
+import com.switchfullywork.eurder.domain.order.OrderDTO;
 import com.switchfullywork.eurder.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,8 +33,23 @@ public class OrderMapper {
                 .build();
     }
 
+    public OrderDTO toOrderDTO(Order order) {
+        List<ItemGroup> itemGroupList = order.getListOfItemGroups();
+
+        return new OrderDTO.OrderDTOBuilder()
+                .setOrderId(order.getOrderId())
+                .setCustomerId(order.getCustomerId())
+                .setListOfItemGroups(itemGroupList)
+                .setTotalPrice(calculateTotalPrice(itemGroupList))
+                .build();
+    }
+
     public List<ItemGroup> toItemGroupList(List<CreateItemGroupDTO> createItemGroupDTOList) {
         return createItemGroupDTOList.stream().map(this::toItemGroup).toList();
+    }
+
+    public List<ItemGroupDTO> toItemGroupDTOList(List<ItemGroup> itemGroupList) {
+        return itemGroupList.stream().map(this::toItemGroupDTO).toList();
     }
 
     public ItemGroup toItemGroup(CreateItemGroupDTO createItemGroupDTO) {
@@ -42,6 +59,15 @@ public class OrderMapper {
                 .setShippingDate(calculateShippingDate(createItemGroupDTO))
                 .build();
     }
+
+    public ItemGroupDTO toItemGroupDTO(ItemGroup itemGroup) {
+        return new ItemGroupDTO.ItemGroupDTOBuilder()
+                .setItemid(itemGroup.getItemId())
+                .setAmount(itemGroup.getAmount())
+                .setShippingDate(itemGroup.getShippingDate())
+                .build();
+    }
+
 
     public double calculateTotalPrice(List<ItemGroup> itemGroupList) {
         double totalPrice = 0;

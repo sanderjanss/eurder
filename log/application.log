@@ -1,0 +1,280 @@
+2021-11-01 13:56:55.113  INFO 29856 --- [main] c.s.eurder.EurderApplication             : Starting EurderApplication using Java 17.0.1 on DESKTOP-VVMKEP9 with PID 29856 (C:\Switchfully\2. JAVA\eurder\target\classes started by colruyt in C:\Switchfully\2. JAVA\eurder)
+2021-11-01 13:56:55.113  INFO 29856 --- [main] c.s.eurder.EurderApplication             : No active profile set, falling back to default profiles: default
+2021-11-01 13:56:56.797  INFO 29856 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-01 13:56:56.829  INFO 29856 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-01 13:56:56.829  INFO 29856 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2021-11-01 13:56:57.000  INFO 29856 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-01 13:56:57.000  INFO 29856 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1788 ms
+2021-11-01 13:56:57.076  INFO 29856 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: f3570ac0-3c58-4ffa-bf22-7b1310c89f17
+2021-11-01 13:56:57.990  INFO 29856 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-01 13:56:58.005  INFO 29856 --- [main] c.s.eurder.EurderApplication             : Started EurderApplication in 3.496 seconds (JVM running for 4.734)
+2021-11-01 13:58:14.015  INFO 29856 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-01 13:58:14.015  INFO 29856 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-01 13:58:14.015  INFO 29856 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-11-01 13:58:14.618  INFO 29856 --- [http-nio-8080-exec-1] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 555 ms
+2021-11-01 13:59:41.993  INFO 29856 --- [http-nio-8080-exec-8] c.s.eurder.controller.OrderController    : Registering Order.
+2021-11-01 14:01:39.217  INFO 29856 --- [http-nio-8080-exec-10] c.s.eurder.controller.OrderController    : Registering Order.
+2021-11-01 14:02:12.463  INFO 29856 --- [http-nio-8080-exec-2] c.s.eurder.controller.OrderController    : Registering Order.
+2021-11-01 14:03:17.739  INFO 29856 --- [http-nio-8080-exec-4] c.s.eurder.controller.ItemController     : Registering item.
+2021-11-01 14:03:54.499  INFO 29856 --- [http-nio-8080-exec-6] c.s.eurder.controller.ItemController     : Registering item.
+2021-11-01 14:03:54.499  INFO 29856 --- [http-nio-8080-exec-6] c.s.e.repository.DefaultItemRepository   : Registed an item.
+2021-11-01 14:03:54.507  INFO 29856 --- [http-nio-8080-exec-6] c.s.e.repository.DefaultItemRepository   : Registed Item ID: e143463d-681b-4cce-997b-5bee04ac7077
+2021-11-01 14:03:54.507  INFO 29856 --- [http-nio-8080-exec-6] c.s.eurder.controller.ItemController     : Item registered.
+2021-11-01 14:04:54.102  INFO 29856 --- [http-nio-8080-exec-7] c.s.eurder.controller.ItemController     : Updating item.
+2021-11-01 14:04:54.102  INFO 29856 --- [http-nio-8080-exec-7] c.s.eurder.controller.ItemController     : Updated item.
+2021-11-01 14:46:23.452  INFO 10984 --- [main] c.s.eurder.EurderApplication             : Starting EurderApplication using Java 17.0.1 on DESKTOP-VVMKEP9 with PID 10984 (C:\Switchfully\2. JAVA\eurder\target\classes started by colruyt in C:\Switchfully\2. JAVA\eurder)
+2021-11-01 14:46:23.452  INFO 10984 --- [main] c.s.eurder.EurderApplication             : No active profile set, falling back to default profiles: default
+2021-11-01 14:46:24.818  INFO 10984 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-01 14:46:24.839  INFO 10984 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-01 14:46:24.839  INFO 10984 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2021-11-01 14:46:25.020  INFO 10984 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-01 14:46:25.020  INFO 10984 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1504 ms
+2021-11-01 14:46:25.106  INFO 10984 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: 72392eb8-fd24-4531-820f-7b3a1eadb621
+2021-11-01 14:46:25.913  INFO 10984 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-01 14:46:25.929  INFO 10984 --- [main] c.s.eurder.EurderApplication             : Started EurderApplication in 3.032 seconds (JVM running for 4.01)
+2021-11-01 14:47:36.609  INFO 10984 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-01 14:47:36.609  INFO 10984 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-01 14:47:36.609  INFO 10984 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-11-01 14:47:36.737  INFO 10984 --- [http-nio-8080-exec-1] c.s.eurder.controller.ItemController     : Registering item.
+2021-11-01 14:47:36.737  INFO 10984 --- [http-nio-8080-exec-1] c.s.e.repository.DefaultItemRepository   : Registed an item.
+2021-11-01 14:47:36.737  INFO 10984 --- [http-nio-8080-exec-1] c.s.e.repository.DefaultItemRepository   : Registed Item ID: 42ddeb28-71d1-4f3d-83ec-d49ab6ef85d7
+2021-11-01 14:47:36.737  INFO 10984 --- [http-nio-8080-exec-1] c.s.eurder.controller.ItemController     : Item registered.
+2021-11-01 14:47:48.190  INFO 10984 --- [http-nio-8080-exec-3] c.s.eurder.controller.UserController     : Registering new user.
+2021-11-01 14:47:48.190  INFO 10984 --- [http-nio-8080-exec-3] c.s.eurder.controller.UserController     : New user registered.
+2021-11-01 14:48:11.413  INFO 10984 --- [http-nio-8080-exec-4] c.s.eurder.controller.UserController     : Retrieving the customerlist.
+2021-11-01 14:48:11.421  INFO 10984 --- [http-nio-8080-exec-4] c.s.eurder.controller.UserController     : Retrieved 1 customers.
+2021-11-01 14:49:20.693  INFO 10984 --- [http-nio-8080-exec-7] c.s.eurder.controller.OrderController    : Registering Order.
+2021-11-01 14:49:20.701  INFO 10984 --- [http-nio-8080-exec-7] c.s.eurder.controller.OrderController    : Order registered.
+2021-11-01 14:49:20.717 ERROR 10984 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.switchfullywork.eurder.domain.order.Order.getTotalPrice()" because "order" is null] with root cause
+
+java.lang.NullPointerException: Cannot invoke "com.switchfullywork.eurder.domain.order.Order.getTotalPrice()" because "order" is null
+	at com.switchfullywork.eurder.controller.OrderController.registerOrder(OrderController.java:33) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681) ~[tomcat-embed-core-9.0.54.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.54.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2021-11-01 14:56:54.993  INFO 24036 --- [main] c.s.eurder.EurderApplication             : Starting EurderApplication using Java 17.0.1 on DESKTOP-VVMKEP9 with PID 24036 (C:\Switchfully\2. JAVA\eurder\target\classes started by colruyt in C:\Switchfully\2. JAVA\eurder)
+2021-11-01 14:56:54.993  INFO 24036 --- [main] c.s.eurder.EurderApplication             : No active profile set, falling back to default profiles: default
+2021-11-01 14:56:56.276  INFO 24036 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-01 14:56:56.292  INFO 24036 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-01 14:56:56.292  INFO 24036 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2021-11-01 14:56:56.480  INFO 24036 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-01 14:56:56.480  INFO 24036 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1424 ms
+2021-11-01 14:56:56.551  INFO 24036 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: 06588acf-db5c-4b18-86cd-5123263db36b
+2021-11-01 14:56:57.498  INFO 24036 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-01 14:56:57.514  INFO 24036 --- [main] c.s.eurder.EurderApplication             : Started EurderApplication in 3.04 seconds (JVM running for 4.02)
+2021-11-01 14:57:20.060  INFO 24036 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-01 14:57:20.068  INFO 24036 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-01 14:57:20.068  INFO 24036 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-11-01 14:57:20.189  INFO 24036 --- [http-nio-8080-exec-2] c.s.eurder.controller.ItemController     : Registering item.
+2021-11-01 14:57:20.189  INFO 24036 --- [http-nio-8080-exec-2] c.s.e.repository.DefaultItemRepository   : Registed an item.
+2021-11-01 14:57:20.189  INFO 24036 --- [http-nio-8080-exec-2] c.s.e.repository.DefaultItemRepository   : Registed Item ID: a9c2b5db-d204-42dd-b171-9f460c3c1f8e
+2021-11-01 14:57:20.189  INFO 24036 --- [http-nio-8080-exec-2] c.s.eurder.controller.ItemController     : Item registered.
+2021-11-01 14:57:43.421  INFO 24036 --- [http-nio-8080-exec-3] c.s.eurder.controller.ItemController     : Registering item.
+2021-11-01 14:57:43.429  INFO 24036 --- [http-nio-8080-exec-3] c.s.e.repository.DefaultItemRepository   : Registed an item.
+2021-11-01 14:57:43.429  INFO 24036 --- [http-nio-8080-exec-3] c.s.e.repository.DefaultItemRepository   : Registed Item ID: 8a2497e1-63fc-433e-a239-3f57057f38c1
+2021-11-01 14:57:43.429  INFO 24036 --- [http-nio-8080-exec-3] c.s.eurder.controller.ItemController     : Item registered.
+2021-11-01 14:57:51.452  INFO 24036 --- [http-nio-8080-exec-4] c.s.eurder.controller.UserController     : Registering new user.
+2021-11-01 14:57:51.460  INFO 24036 --- [http-nio-8080-exec-4] c.s.eurder.controller.UserController     : New user registered.
+2021-11-01 14:58:00.230  INFO 24036 --- [http-nio-8080-exec-5] c.s.eurder.controller.UserController     : Registering new user.
+2021-11-01 14:58:00.230  INFO 24036 --- [http-nio-8080-exec-5] c.s.eurder.controller.UserController     : New user registered.
+2021-11-01 14:58:11.660  INFO 24036 --- [http-nio-8080-exec-6] c.s.eurder.controller.UserController     : Retrieving the customerlist.
+2021-11-01 14:58:11.668  INFO 24036 --- [http-nio-8080-exec-6] c.s.eurder.controller.UserController     : Retrieved 2 customers.
+2021-11-01 14:58:51.885  INFO 18404 --- [main] c.s.eurder.EurderApplication             : Starting EurderApplication using Java 17.0.1 on DESKTOP-VVMKEP9 with PID 18404 (C:\Switchfully\2. JAVA\eurder\target\classes started by colruyt in C:\Switchfully\2. JAVA\eurder)
+2021-11-01 14:58:51.885  INFO 18404 --- [main] c.s.eurder.EurderApplication             : No active profile set, falling back to default profiles: default
+2021-11-01 14:58:53.308  INFO 18404 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-01 14:58:53.324  INFO 18404 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-01 14:58:53.324  INFO 18404 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2021-11-01 14:58:53.511  INFO 18404 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-01 14:58:53.511  INFO 18404 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1580 ms
+2021-11-01 14:58:53.605  INFO 18404 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: c319703b-b694-4020-b5d6-fabf07b85ea3
+2021-11-01 14:58:54.739  INFO 18404 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-01 14:58:54.755  INFO 18404 --- [main] c.s.eurder.EurderApplication             : Started EurderApplication in 3.47 seconds (JVM running for 4.758)
+2021-11-01 14:59:14.839  INFO 18404 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-01 14:59:14.839  INFO 18404 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-01 14:59:14.847  INFO 18404 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2021-11-01 14:59:15.016  INFO 18404 --- [http-nio-8080-exec-1] c.s.eurder.controller.ItemController     : Registering item.
+2021-11-01 14:59:15.016  INFO 18404 --- [http-nio-8080-exec-1] c.s.e.repository.DefaultItemRepository   : Registed an item.
+2021-11-01 14:59:15.016  INFO 18404 --- [http-nio-8080-exec-1] c.s.e.repository.DefaultItemRepository   : Registed Item ID: 3f29df54-f26e-4945-99d5-f58f3bbb683c
+2021-11-01 14:59:15.016  INFO 18404 --- [http-nio-8080-exec-1] c.s.eurder.controller.ItemController     : Item registered.
+2021-11-01 14:59:34.505  INFO 18404 --- [http-nio-8080-exec-3] c.s.eurder.controller.ItemController     : Registering item.
+2021-11-01 14:59:34.505  INFO 18404 --- [http-nio-8080-exec-3] c.s.e.repository.DefaultItemRepository   : Registed an item.
+2021-11-01 14:59:34.505  INFO 18404 --- [http-nio-8080-exec-3] c.s.e.repository.DefaultItemRepository   : Registed Item ID: fff35f56-8a8f-48e3-aca8-88cdf3eb4261
+2021-11-01 14:59:34.505  INFO 18404 --- [http-nio-8080-exec-3] c.s.eurder.controller.ItemController     : Item registered.
+2021-11-01 14:59:49.514  INFO 18404 --- [http-nio-8080-exec-4] c.s.eurder.controller.UserController     : Registering new user.
+2021-11-01 14:59:49.514  INFO 18404 --- [http-nio-8080-exec-4] c.s.eurder.controller.UserController     : New user registered.
+2021-11-01 14:59:52.744  INFO 18404 --- [http-nio-8080-exec-5] c.s.eurder.controller.UserController     : Registering new user.
+2021-11-01 15:00:00.215  INFO 18404 --- [http-nio-8080-exec-6] c.s.eurder.controller.UserController     : Registering new user.
+2021-11-01 15:00:00.215  INFO 18404 --- [http-nio-8080-exec-6] c.s.eurder.controller.UserController     : New user registered.
+2021-11-01 15:00:08.372  INFO 18404 --- [http-nio-8080-exec-7] c.s.eurder.controller.UserController     : Retrieving the customerlist.
+2021-11-01 15:00:08.372  INFO 18404 --- [http-nio-8080-exec-7] c.s.eurder.controller.UserController     : Retrieved 2 customers.
+2021-11-01 15:01:37.174  INFO 18404 --- [http-nio-8080-exec-10] c.s.eurder.controller.OrderController    : Registering Order.
+2021-11-01 15:04:39.885  INFO 18404 --- [http-nio-8080-exec-10] c.s.eurder.controller.OrderController    : Order registered.
+2021-11-01 15:10:27.793 ERROR 18404 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.switchfullywork.eurder.domain.order.Order.getTotalPrice()" because "order" is null] with root cause
+
+java.lang.NullPointerException: Cannot invoke "com.switchfullywork.eurder.domain.order.Order.getTotalPrice()" because "order" is null
+	at com.switchfullywork.eurder.controller.OrderController.registerOrder(OrderController.java:33) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681) ~[tomcat-embed-core-9.0.54.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.12.jar:5.3.12]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.54.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.12.jar:5.3.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.54.jar:9.0.54]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2021-11-01 15:10:37.121  INFO 27796 --- [main] c.s.eurder.EurderApplication             : Starting EurderApplication using Java 17.0.1 on DESKTOP-VVMKEP9 with PID 27796 (C:\Switchfully\2. JAVA\eurder\target\classes started by colruyt in C:\Switchfully\2. JAVA\eurder)
+2021-11-01 15:10:37.121  INFO 27796 --- [main] c.s.eurder.EurderApplication             : No active profile set, falling back to default profiles: default
+2021-11-01 15:10:38.446  INFO 27796 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-01 15:10:38.446  INFO 27796 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-01 15:10:38.461  INFO 27796 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2021-11-01 15:10:38.602  INFO 27796 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-01 15:10:38.602  INFO 27796 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1411 ms
+2021-11-01 15:10:38.660  INFO 27796 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: 4e041220-fdd8-429d-aeab-cda736243d3c
+2021-11-01 15:10:39.544  INFO 27796 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-01 15:10:39.560  INFO 27796 --- [main] c.s.eurder.EurderApplication             : Started EurderApplication in 3.089 seconds (JVM running for 4.25)
+2021-11-01 15:11:44.090  INFO 27796 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-01 15:11:44.090  INFO 27796 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-01 15:11:44.090  INFO 27796 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-11-01 15:11:44.267  INFO 27796 --- [http-nio-8080-exec-1] c.s.eurder.controller.ItemController     : Registering item.
+2021-11-01 15:11:44.267  INFO 27796 --- [http-nio-8080-exec-1] c.s.e.repository.DefaultItemRepository   : Registed an item.
+2021-11-01 15:11:44.267  INFO 27796 --- [http-nio-8080-exec-1] c.s.e.repository.DefaultItemRepository   : Registed Item ID: 4fda3400-545d-4dfe-be54-0d3108123eec
+2021-11-01 15:11:44.267  INFO 27796 --- [http-nio-8080-exec-1] c.s.eurder.controller.ItemController     : Item registered.
+2021-11-01 15:11:57.597  INFO 27796 --- [http-nio-8080-exec-3] c.s.eurder.controller.ItemController     : Registering item.
+2021-11-01 15:11:57.597  INFO 27796 --- [http-nio-8080-exec-3] c.s.e.repository.DefaultItemRepository   : Registed an item.
+2021-11-01 15:11:57.597  INFO 27796 --- [http-nio-8080-exec-3] c.s.e.repository.DefaultItemRepository   : Registed Item ID: 97fb7c4a-968e-42bf-99f5-bb93406cf698
+2021-11-01 15:11:57.597  INFO 27796 --- [http-nio-8080-exec-3] c.s.eurder.controller.ItemController     : Item registered.
+2021-11-01 15:12:03.807  INFO 27796 --- [http-nio-8080-exec-4] c.s.eurder.controller.UserController     : Registering new user.
+2021-11-01 15:12:03.807  INFO 27796 --- [http-nio-8080-exec-4] c.s.eurder.controller.UserController     : New user registered.
+2021-11-01 15:12:18.061  INFO 27796 --- [http-nio-8080-exec-5] c.s.eurder.controller.UserController     : Registering new user.
+2021-11-01 15:12:18.061  INFO 27796 --- [http-nio-8080-exec-5] c.s.eurder.controller.UserController     : New user registered.
+2021-11-01 15:12:21.420  INFO 27796 --- [http-nio-8080-exec-6] c.s.eurder.controller.UserController     : Retrieving the customerlist.
+2021-11-01 15:12:36.988  INFO 27796 --- [http-nio-8080-exec-8] c.s.eurder.controller.UserController     : Retrieving the customerlist.
+2021-11-01 15:12:36.997  INFO 27796 --- [http-nio-8080-exec-8] c.s.eurder.controller.UserController     : Retrieved 2 customers.
+2021-11-01 15:13:22.983  INFO 27796 --- [http-nio-8080-exec-9] c.s.eurder.controller.OrderController    : Registering Order.
+2021-11-01 15:14:41.367  INFO 27796 --- [http-nio-8080-exec-9] c.s.eurder.controller.OrderController    : Order registered.
+2021-11-01 15:14:49.226  WARN 27796 --- [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotWritableException: No converter for [class java.lang.Double] with preset Content-Type 'null']
+2021-11-01 15:16:26.399  INFO 1764 --- [main] c.s.eurder.EurderApplication             : Starting EurderApplication using Java 17.0.1 on DESKTOP-VVMKEP9 with PID 1764 (C:\Switchfully\2. JAVA\eurder\target\classes started by colruyt in C:\Switchfully\2. JAVA\eurder)
+2021-11-01 15:16:26.416  INFO 1764 --- [main] c.s.eurder.EurderApplication             : No active profile set, falling back to default profiles: default
+2021-11-01 15:16:27.732  INFO 1764 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-01 15:16:27.763  INFO 1764 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-01 15:16:27.763  INFO 1764 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2021-11-01 15:16:27.982  INFO 1764 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-01 15:16:27.982  INFO 1764 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1516 ms
+2021-11-01 15:16:28.060  INFO 1764 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: 6ab54804-c8e2-42fa-befc-46f67b32e821
+2021-11-01 15:16:29.044  INFO 1764 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-01 15:16:29.060  INFO 1764 --- [main] c.s.eurder.EurderApplication             : Started EurderApplication in 3.226 seconds (JVM running for 4.195)
+2021-11-01 15:16:44.460  INFO 1764 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-01 15:16:44.460  INFO 1764 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-01 15:16:44.460  INFO 1764 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-11-01 15:16:44.611  INFO 1764 --- [http-nio-8080-exec-1] c.s.eurder.controller.ItemController     : Registering item.
+2021-11-01 15:16:44.619  INFO 1764 --- [http-nio-8080-exec-1] c.s.e.repository.DefaultItemRepository   : Registed an item.
+2021-11-01 15:16:44.619  INFO 1764 --- [http-nio-8080-exec-1] c.s.e.repository.DefaultItemRepository   : Registed Item ID: 3c52fc77-6114-419d-b9f6-fc38d624e4c8
+2021-11-01 15:16:44.619  INFO 1764 --- [http-nio-8080-exec-1] c.s.eurder.controller.ItemController     : Item registered.
+2021-11-01 15:16:58.331  INFO 1764 --- [http-nio-8080-exec-3] c.s.eurder.controller.ItemController     : Registering item.
+2021-11-01 15:16:58.331  INFO 1764 --- [http-nio-8080-exec-3] c.s.e.repository.DefaultItemRepository   : Registed an item.
+2021-11-01 15:16:58.331  INFO 1764 --- [http-nio-8080-exec-3] c.s.e.repository.DefaultItemRepository   : Registed Item ID: 525a5dbc-3010-450d-8781-11b201b0e6e3
+2021-11-01 15:16:58.331  INFO 1764 --- [http-nio-8080-exec-3] c.s.eurder.controller.ItemController     : Item registered.
+2021-11-01 15:17:03.039  INFO 1764 --- [http-nio-8080-exec-4] c.s.eurder.controller.UserController     : Registering new user.
+2021-11-01 15:17:03.039  INFO 1764 --- [http-nio-8080-exec-4] c.s.eurder.controller.UserController     : New user registered.
+2021-11-01 15:17:11.748  INFO 1764 --- [http-nio-8080-exec-5] c.s.eurder.controller.UserController     : Registering new user.
+2021-11-01 15:17:11.748  INFO 1764 --- [http-nio-8080-exec-5] c.s.eurder.controller.UserController     : New user registered.
+2021-11-01 15:17:20.271  INFO 1764 --- [http-nio-8080-exec-6] c.s.eurder.controller.UserController     : Retrieving the customerlist.
+2021-11-01 15:17:20.279  INFO 1764 --- [http-nio-8080-exec-6] c.s.eurder.controller.UserController     : Retrieved 2 customers.
+2021-11-01 15:18:11.815  INFO 1764 --- [http-nio-8080-exec-7] c.s.eurder.controller.OrderController    : Registering Order.
+2021-11-01 15:18:11.815  INFO 1764 --- [http-nio-8080-exec-7] c.s.eurder.controller.OrderController    : Order registered.
+2021-11-01 15:19:51.086  INFO 1764 --- [http-nio-8080-exec-10] c.s.eurder.controller.OrderController    : Registering Order.
+2021-11-01 15:19:51.086  INFO 1764 --- [http-nio-8080-exec-10] c.s.eurder.controller.OrderController    : Order registered.
+2021-11-01 15:20:00.362  INFO 1764 --- [http-nio-8080-exec-2] c.s.eurder.controller.OrderController    : Registering Order.
+2021-11-01 15:20:00.362  INFO 1764 --- [http-nio-8080-exec-2] c.s.eurder.controller.OrderController    : Order registered.
+2021-11-01 15:20:12.196  INFO 1764 --- [http-nio-8080-exec-1] c.s.eurder.controller.OrderController    : Registering Order.
+2021-11-01 15:20:12.196  INFO 1764 --- [http-nio-8080-exec-1] c.s.eurder.controller.OrderController    : Order registered.

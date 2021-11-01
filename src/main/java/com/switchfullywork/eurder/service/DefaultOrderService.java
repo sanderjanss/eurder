@@ -2,6 +2,8 @@ package com.switchfullywork.eurder.service;
 
 import com.switchfullywork.eurder.domain.item.CreateItemGroupDTO;
 import com.switchfullywork.eurder.domain.order.CreateOrderDTO;
+import com.switchfullywork.eurder.domain.order.Order;
+import com.switchfullywork.eurder.domain.order.OrderDTO;
 import com.switchfullywork.eurder.exceptions.InvalidItemException;
 import com.switchfullywork.eurder.exceptions.InvalidOrderException;
 import com.switchfullywork.eurder.exceptions.InvalidUserException;
@@ -11,6 +13,8 @@ import com.switchfullywork.eurder.repository.OrderRepository;
 import com.switchfullywork.eurder.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class DefaultOrderService implements OrderService {
@@ -28,7 +32,7 @@ public class DefaultOrderService implements OrderService {
         this.itemRepository = itemRepository;
     }
 
-    public void registerOrder(CreateOrderDTO createOrderDTO) {
+    public double registerOrder(CreateOrderDTO createOrderDTO) {
         if (createOrderDTO == null) {
             throw new InvalidOrderException("Not a valid Order.");
         }
@@ -41,7 +45,16 @@ public class DefaultOrderService implements OrderService {
                 throw new InvalidItemException("Not a valid Item");
             }
         }
+        Order order = orderMapper.toOrder(createOrderDTO);
+        orderRepository.registerOrder(order);
+        return order.getTotalPrice();
+    }
 
-        orderRepository.registerOrder(orderMapper.toOrder(createOrderDTO));
+    @Override
+    public OrderDTO getOrder(UUID customerId) {
+        if(userRepository.findById(customerId) == null){
+            throw new InvalidUserException("Not a valid user.");
+        }
+        return orderMapper.toOrderDTO(orderRepository.getOrder(customerId));
     }
 }

@@ -27,16 +27,14 @@ public class UserMapper {
     }
 
     public UserDTO toDto(User user) {
-
-        var userDTOBuilder = new UserDTO.UserDTOBuilder();
-        return userDTOBuilder
-                .setUserId(user.getUserId())
-                .setFirstName(user.getFirstName())
-                .setLastName(user.getLastName())
-                .setAddress(user.getAddress())
-                .setEmailAddress(user.getEmailAddress())
-                .setRole(user.getRole())
-                .setPhoneNumber(user.getPhoneNumber())
+        return UserDTO.builder()
+                .userId(user.getUserId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .address(user.getAddress())
+                .emailAddress(user.getEmailAddress())
+                .role(user.getRole())
+                .phoneNumber(user.getPhoneNumber())
                 .build();
     }
 }

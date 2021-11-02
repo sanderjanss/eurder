@@ -278,3 +278,17 @@ java.lang.NullPointerException: Cannot invoke "com.switchfullywork.eurder.domain
 2021-11-01 15:20:00.362  INFO 1764 --- [http-nio-8080-exec-2] c.s.eurder.controller.OrderController    : Order registered.
 2021-11-01 15:20:12.196  INFO 1764 --- [http-nio-8080-exec-1] c.s.eurder.controller.OrderController    : Registering Order.
 2021-11-01 15:20:12.196  INFO 1764 --- [http-nio-8080-exec-1] c.s.eurder.controller.OrderController    : Order registered.
+2021-11-01 18:59:42.975  INFO 16804 --- [main] c.s.e.r.DefaultUserRepositoryTest        : Starting DefaultUserRepositoryTest using Java 17.0.1 on DESKTOP-VVMKEP9 with PID 16804 (started by colruyt in C:\Switchfully\2. JAVA\eurder)
+2021-11-01 18:59:42.975  INFO 16804 --- [main] c.s.e.r.DefaultUserRepositoryTest        : No active profile set, falling back to default profiles: default
+2021-11-01 18:59:44.406  INFO 16804 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: 291910bd-661a-4bbd-b083-3cf156ea2b47
+2021-11-01 18:59:46.368  INFO 16804 --- [main] c.s.e.r.DefaultUserRepositoryTest        : Started DefaultUserRepositoryTest in 3.815 seconds (JVM running for 5.519)
+2021-11-01 18:59:47.024  INFO 16804 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: 8e039bc2-482e-4776-883d-8efbf92b28ad
+2021-11-01 18:59:47.055  INFO 16804 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: b0610843-3d98-408e-b745-7487c8fd277a
+2021-11-01 19:08:19.236  INFO 8336 --- [main] c.s.e.service.DefaultUserServiceTest     : Starting DefaultUserServiceTest using Java 17.0.1 on DESKTOP-VVMKEP9 with PID 8336 (started by colruyt in C:\Switchfully\2. JAVA\eurder)
+2021-11-01 19:08:19.236  INFO 8336 --- [main] c.s.e.service.DefaultUserServiceTest     : No active profile set, falling back to default profiles: default
+2021-11-01 19:08:21.017  INFO 8336 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: abe02cbd-0064-4384-94a7-4527b2351611
+2021-11-01 19:08:22.991  INFO 8336 --- [main] c.s.e.service.DefaultUserServiceTest     : Started DefaultUserServiceTest in 4.35 seconds (JVM running for 6.166)
+2021-11-01 19:08:23.507  INFO 8336 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: 3ee16f0a-ecf9-4eda-bdfe-7b7423d10ace
+2021-11-01 19:08:23.601  INFO 8336 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: af8d7b47-5828-4b1f-b504-476e1c18d81a
+2021-11-01 19:08:23.616  INFO 8336 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: 3ceca653-3628-4570-9c20-8fe49527e81a
+2021-11-01 19:08:23.632  INFO 8336 --- [main] c.s.e.repository.DefaultUserRepository   : Admin ID: 678fdd5e-892b-4f38-806f-7dcd4fff1d55

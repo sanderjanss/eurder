@@ -36,8 +36,11 @@ class DefaultItemServiceTest {
         customer = new User("Bram", "Janssens", "Bramzz@email.com", address1, "0477777777", Role.CUSTOMER);
         admin = new User("Admin", "Janssens", "Admin@email.com", address2, "0411111111", Role.ADMIN);
         createItemDTO1 = new CreateItemDTO("Dog", "A pluchy dog", 20, 8);
+
+
         userRepository.registerCustomer(customer);
         userRepository.registerAdmin(admin);
+
     }
 
     @AfterEach

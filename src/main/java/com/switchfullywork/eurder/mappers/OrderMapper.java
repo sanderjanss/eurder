@@ -1,5 +1,6 @@
 package com.switchfullywork.eurder.mappers;
 
+import com.switchfullywork.eurder.domain.ReportDTO;
 import com.switchfullywork.eurder.domain.item.CreateItemGroupDTO;
 import com.switchfullywork.eurder.domain.item.ItemGroup;
 import com.switchfullywork.eurder.domain.item.ItemGroupDTO;
@@ -23,13 +24,27 @@ public class OrderMapper {
         this.itemRepository = itemRepository;
     }
 
+    public ReportDTO toReportDTO(List<Order> orderList){
+        List<OrderDTO> orderDTOList = toOrderDTOList(orderList);
+        return ReportDTO.builder()
+                .listOfOrders(orderDTOList)
+                .totalPriceAllOrders(calculateTotalPriceReport(orderDTOList))
+                .build();
+    }
+
+    public List<OrderDTO> toOrderDTOList(List<Order> orderList){
+        return orderList.stream()
+                .map(this::toOrderDTO)
+                .toList();
+    }
+
     public Order toOrder(CreateOrderDTO createOrderDTO) {
         List<ItemGroup> itemGroupList = toItemGroupList(createOrderDTO.getListOfItemGroups());
 
         return new Order.OrderBuilder()
                 .setCustomerId(createOrderDTO.getCustomerId())
                 .setListOfItemGroups(itemGroupList)
-                .setTotalPrice(calculateTotalPrice(itemGroupList))
+                .setTotalPrice(calculateTotalPricePerOrder(itemGroupList))
                 .build();
     }
 
@@ -40,7 +55,7 @@ public class OrderMapper {
                 .orderId(order.getOrderId())
                 .customerId(order.getCustomerId())
                 .listOfItemGroups(itemGroupList)
-                .totalPrice(calculateTotalPrice(itemGroupList))
+                .totalPrice(calculateTotalPricePerOrder(itemGroupList))
                 .build();
     }
 
@@ -68,8 +83,17 @@ public class OrderMapper {
                 .build();
     }
 
+    ///////////////////////////////////////////////////:
 
-    public double calculateTotalPrice(List<ItemGroup> itemGroupList) {
+    public double calculateTotalPriceReport(List<OrderDTO> orderDTOList){
+        double totalPrice = 0;
+        for(OrderDTO order: orderDTOList){
+            totalPrice += order.getTotalPrice();
+        }
+        return totalPrice;
+    }
+
+    public double calculateTotalPricePerOrder(List<ItemGroup> itemGroupList) {
         double totalPrice = 0;
         for (ItemGroup itemGroup : itemGroupList) {
             if (itemRepository.contains(itemGroup.getItemId())) {
@@ -85,6 +109,5 @@ public class OrderMapper {
         }
         return createItemGroupDTO.getShippingDate().plusDays(7);
     }
-
 
 }

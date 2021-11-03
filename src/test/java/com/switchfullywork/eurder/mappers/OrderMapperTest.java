@@ -74,7 +74,7 @@ class OrderMapperTest {
     @DisplayName("Calculate the total price of the itemgroups.")
     public void givenAListOfItemGroups_calculateTotalPrice() {
         Order order = orderMapper.toOrder(validOrderDTO);
-        Assertions.assertThat(orderMapper.calculateTotalPrice(order.getListOfItemGroups())).isEqualTo(250);
+        Assertions.assertThat(orderMapper.calculateTotalPricePerOrder(order.getListOfItemGroups())).isEqualTo(250);
     }
 
     @Test

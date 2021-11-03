@@ -1,5 +1,6 @@
 package com.switchfullywork.eurder.service;
 
+import com.switchfullywork.eurder.domain.ReportDTO;
 import com.switchfullywork.eurder.domain.item.CreateItemGroupDTO;
 import com.switchfullywork.eurder.domain.order.CreateOrderDTO;
 import com.switchfullywork.eurder.domain.order.Order;
@@ -54,10 +55,10 @@ public class DefaultOrderService implements OrderService {
     }
 
     @Override
-    public OrderDTO getOrder(UUID customerId) {
+    public ReportDTO getReport(UUID customerId) {
         if(userRepository.findById(customerId) == null){
             throw new InvalidUserException("Not a valid user.");
         }
-        return orderMapper.toOrderDTO(orderRepository.getOrder(customerId));
+        return orderMapper.toReportDTO(orderRepository.getOrders(customerId));
     }
 }

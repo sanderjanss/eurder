@@ -159,7 +159,7 @@ public class DefaultOrderServiceTest {
     @DisplayName("Invalid user when retrieving an order by invalid user id.")
     public void givenTestOrderDataBase_whenFindingAnOrderByInvalidUserId_thenThrowNewInvalidUserException(){
         Assertions.assertThatThrownBy(() ->
-                orderService.getOrder(UUID.randomUUID())).isInstanceOf(InvalidUserException.class);
+                orderService.getReport(UUID.randomUUID())).isInstanceOf(InvalidUserException.class);
     }
 
 

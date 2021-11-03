@@ -1,5 +1,6 @@
 package com.switchfullywork.eurder.controller;
 
+import com.switchfullywork.eurder.domain.ReportDTO;
 import com.switchfullywork.eurder.domain.order.CreateOrderDTO;
 import com.switchfullywork.eurder.domain.order.Order;
 import com.switchfullywork.eurder.domain.order.OrderDTO;
@@ -35,8 +36,8 @@ public class OrderController {
 
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public OrderDTO getOrder(@RequestHeader(value = "customerId") UUID customerId){
-        return orderService.getOrder(customerId);
+    public ReportDTO getOrder(@RequestHeader(value = "customerId") UUID customerId){
+        return orderService.getReport(customerId);
     }
 
 }

@@ -1,10 +1,10 @@
 package com.switchfullywork.eurder.service;
 
-import com.switchfullywork.eurder.domain.itemdto.CreateItemRequest;
 import com.switchfullywork.eurder.domain.entity.item.Item;
 import com.switchfullywork.eurder.domain.entity.user.Address;
 import com.switchfullywork.eurder.domain.entity.user.Role;
 import com.switchfullywork.eurder.domain.entity.user.User;
+import com.switchfullywork.eurder.domain.itemdto.CreateItemRequest;
 import com.switchfullywork.eurder.exceptions.InvalidItemException;
 import com.switchfullywork.eurder.exceptions.InvalidUserException;
 import com.switchfullywork.eurder.exceptions.ItemAllreadyExistsException;
@@ -76,35 +76,35 @@ class DefaultItemServiceTest {
     @Test
     public void givenTestItemDatabase_whenRegisteredItemAllreadyPartOfDatabase_ThenThrowNewItemAllreadyExistsException() {
         //WHEN USING CREATEITEMDTO1 CLEAN INSTALL DOESNT WORK
-        itemService.registerItem(createItemRequest1, admin.getUserId());
+        itemService.registerItem(createItemRequest3, admin.getUserId());
 
-        Assertions.assertThatThrownBy(() -> itemService.registerItem(createItemRequest1, admin.getUserId()))
+        Assertions.assertThatThrownBy(() -> itemService.registerItem(createItemRequest3, admin.getUserId()))
                 .isInstanceOf(ItemAllreadyExistsException.class);
     }
 
     @Test
-    public void givenTestItemDatabase_whenInvalidUserTriesToUpdateAnItem_thenThrowNewInvalidUserException(){
+    public void givenTestItemDatabase_whenInvalidUserTriesToUpdateAnItem_thenThrowNewInvalidUserException() {
         Assertions.assertThatThrownBy(() ->
-        itemService.updateItem(createItemRequest1, UUID.randomUUID(), item.getItemId()))
+                        itemService.updateItem(createItemRequest1, UUID.randomUUID(), item.getItemId()))
                 .isInstanceOf(InvalidUserException.class);
     }
 
     @Test
-    public void givenTestItemDatabase_whenValidUserTriesToUpdateInvalidItem_thenThrowNewInvalidItemException(){
+    public void givenTestItemDatabase_whenValidUserTriesToUpdateInvalidItem_thenThrowNewInvalidItemException() {
         Assertions.assertThatThrownBy(() ->
                         itemService.updateItem(createItemRequest1, admin.getUserId(), UUID.randomUUID()))
                 .isInstanceOf(InvalidItemException.class);
     }
 
     @Test
-    public void givenTestItemDatabase_whenPassedOnObjectIsNull_thenThrowNewInvalidItemException(){
+    public void givenTestItemDatabase_whenPassedOnObjectIsNull_thenThrowNewInvalidItemException() {
         Assertions.assertThatThrownBy(() ->
                         itemService.updateItem(null, admin.getUserId(), item.getItemId()))
                 .isInstanceOf(InvalidItemException.class);
     }
 
     @Test
-    public void givenTestItemDatabase_whenACustomerTriesToUpdateAnItem_thenThrowNewNoAuthorizationException(){
+    public void givenTestItemDatabase_whenACustomerTriesToUpdateAnItem_thenThrowNewNoAuthorizationException() {
         Assertions.assertThatThrownBy(() ->
                         itemService.updateItem(createItemRequest1, customer.getUserId(), item.getItemId()))
                 .isInstanceOf(NoAuthorizationException.class);
@@ -113,7 +113,7 @@ class DefaultItemServiceTest {
 
 //    @Test
 //    public void givenTestItemDatabase_whenUserWithInvalidIdRegistersItem_ThenThrowNewInvaliduserException() {
-//        Assertions.assertThatThrownBy(() -> itemService.registerItem(createItemDTO1, UUID.randomUUID()))
+//        Assertions.assertThatThrownBy(() -> itemService.registerItem(createItemRequest1, UUID.randomUUID()))
 //                .isInstanceOf(InvalidUserException.class);
 //    }
 

@@ -61,10 +61,10 @@ public class OrderMapper {
     }
 
     public ItemGroupDTO toItemGroupDTO(ItemGroup itemGroup) {
-        return new ItemGroupDTO.ItemGroupDTOBuilder()
-                .setItemid(itemGroup.getItemId())
-                .setAmount(itemGroup.getAmount())
-                .setShippingDate(itemGroup.getShippingDate())
+        return ItemGroupDTO.builder()
+                .itemGroupId(itemGroup.getItemId())
+                .amount(itemGroup.getAmount())
+                .shippingDate(itemGroup.getShippingDate())
                 .build();
     }
 

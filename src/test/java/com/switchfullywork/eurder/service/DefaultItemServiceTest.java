@@ -5,20 +5,15 @@ import com.switchfullywork.eurder.domain.user.Address;
 import com.switchfullywork.eurder.domain.user.Role;
 import com.switchfullywork.eurder.domain.user.User;
 import com.switchfullywork.eurder.exceptions.InvalidItemException;
-import com.switchfullywork.eurder.exceptions.InvalidUserException;
 import com.switchfullywork.eurder.exceptions.ItemAllreadyExistsException;
 import com.switchfullywork.eurder.exceptions.NoAuthorizationException;
-import com.switchfullywork.eurder.mappers.ItemMapper;
-import com.switchfullywork.eurder.repository.DefaultUserRepository;
-import com.switchfullywork.eurder.repository.ItemRepository;
 import com.switchfullywork.eurder.repository.UserRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.UUID;
 
 @SpringBootTest
 class DefaultItemServiceTest {
@@ -45,6 +40,11 @@ class DefaultItemServiceTest {
         userRepository.registerAdmin(admin);
     }
 
+    @AfterEach
+    public void afterEachTest() {
+
+    }
+
     @Test
     public void givenTestItemDatabase_whenUserWithoutAuthorizationRegistersItem_ThenThrowNewNoAuthorizationException() {
         Assertions.assertThatThrownBy(() -> itemService.registerItem(createItemDTO1, customer.getUserId()))
@@ -57,12 +57,6 @@ class DefaultItemServiceTest {
                 .isInstanceOf(InvalidItemException.class);
     }
 
-//    @Test
-//    public void givenTestItemDatabase_whenUserWithInvalidIdRegistersItem_ThenThrowNewInvaliduserException() {
-//        Assertions.assertThatThrownBy(() -> itemService.registerItem(createItemDTO1, UUID.randomUUID()))
-//                .isInstanceOf(InvalidUserException.class);
-//    }
-
     @Test
     public void givenTestItemDatabase_whenRegisteredItemAllreadyPartOfDatabase_ThenThrowNewItemAllreadyExistsException() {
         itemService.registerItem(createItemDTO1, admin.getUserId());
@@ -70,5 +64,12 @@ class DefaultItemServiceTest {
         Assertions.assertThatThrownBy(() -> itemService.registerItem(createItemDTO1, admin.getUserId()))
                 .isInstanceOf(ItemAllreadyExistsException.class);
     }
+
+//    @Test
+//    public void givenTestItemDatabase_whenUserWithInvalidIdRegistersItem_ThenThrowNewInvaliduserException() {
+//        Assertions.assertThatThrownBy(() -> itemService.registerItem(createItemDTO1, UUID.randomUUID()))
+//                .isInstanceOf(InvalidUserException.class);
+//    }
+
 
 }

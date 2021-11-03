@@ -99,36 +99,36 @@ public class DefaultOrderServiceTest {
         itemRepository.registerItem(validItem);
         itemRepository.registerItem(validItem2);
 
-        validItemGroupDTO1 = new CreateItemGroupDTO.CreateItemGroupDTOBuilder()
-                .setItemId(validItem.getItemId())
-                .setAmount(5)
-                .setShippingDate(LocalDate.now())
+        validItemGroupDTO1 = CreateItemGroupDTO.builder()
+                .itemId(validItem.getItemId())
+                .amount(5)
+                .shippingDate(LocalDate.now())
                 .build();
-        validItemGroupDTO2 = new CreateItemGroupDTO.CreateItemGroupDTOBuilder()
-                .setItemId(validItem2.getItemId())
-                .setAmount(5)
-                .setShippingDate(LocalDate.now())
-                .build();
-
-        invalidItemGroupDTO = new CreateItemGroupDTO.CreateItemGroupDTOBuilder()
-                .setItemId(UUID.randomUUID())
-                .setAmount(5)
-                .setShippingDate(LocalDate.now())
+        validItemGroupDTO2 = CreateItemGroupDTO.builder()
+                .itemId(validItem2.getItemId())
+                .amount(5)
+                .shippingDate(LocalDate.now())
                 .build();
 
-        validOrderDTO = new CreateOrderDTO.CreateOrderDTOBuilder()
-                .setCustomerId(validCustomer.getUserId())
-                .setListOfItemGroups(List.of(validItemGroupDTO1, validItemGroupDTO2))
+        invalidItemGroupDTO = CreateItemGroupDTO.builder()
+                .itemId(UUID.randomUUID())
+                .amount(5)
+                .shippingDate(LocalDate.now())
                 .build();
 
-        invalidOrder1DTO = new CreateOrderDTO.CreateOrderDTOBuilder()
-                .setCustomerId(invalidCustomer.getUserId())
-                .setListOfItemGroups(List.of(validItemGroupDTO1))
+        validOrderDTO = CreateOrderDTO.builder()
+                .customerId(validCustomer.getUserId())
+                .listOfItemGroups(List.of(validItemGroupDTO1, validItemGroupDTO2))
                 .build();
 
-        invalidOrder2DTO = new CreateOrderDTO.CreateOrderDTOBuilder()
-                .setCustomerId(validCustomer.getUserId())
-                .setListOfItemGroups(List.of(invalidItemGroupDTO))
+        invalidOrder1DTO = CreateOrderDTO.builder()
+                .customerId(invalidCustomer.getUserId())
+                .listOfItemGroups(List.of(validItemGroupDTO1))
+                .build();
+
+        invalidOrder2DTO = CreateOrderDTO.builder()
+                .customerId(validCustomer.getUserId())
+                .listOfItemGroups(List.of(invalidItemGroupDTO))
                 .build();
 
         orderRepository.registerOrder(orderMapper.toOrder(validOrderDTO));

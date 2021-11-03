@@ -49,20 +49,20 @@ class OrderMapperTest {
         itemRepository.registerItem(validItem);
         itemRepository.registerItem(validItem2);
 
-        validItemGroupDTO1 = new CreateItemGroupDTO.CreateItemGroupDTOBuilder()
-                .setItemId(validItem.getItemId())
-                .setAmount(5)
-                .setShippingDate(LocalDate.now())
+        validItemGroupDTO1 = CreateItemGroupDTO.builder()
+                .itemId(validItem.getItemId())
+                .amount(5)
+                .shippingDate(LocalDate.now())
                 .build();
-        validItemGroupDTO2 = new CreateItemGroupDTO.CreateItemGroupDTOBuilder()
-                .setItemId(validItem2.getItemId())
-                .setAmount(5)
-                .setShippingDate(LocalDate.now())
+        validItemGroupDTO2 = CreateItemGroupDTO.builder()
+                .itemId(validItem2.getItemId())
+                .amount(5)
+                .shippingDate(LocalDate.now())
                 .build();
 
-        validOrderDTO = new CreateOrderDTO.CreateOrderDTOBuilder()
-                .setCustomerId(UUID.randomUUID())
-                .setListOfItemGroups(List.of(validItemGroupDTO1, validItemGroupDTO2))
+        validOrderDTO = CreateOrderDTO.builder()
+                .customerId(UUID.randomUUID())
+                .listOfItemGroups(List.of(validItemGroupDTO1, validItemGroupDTO2))
                 .build();
     }
 

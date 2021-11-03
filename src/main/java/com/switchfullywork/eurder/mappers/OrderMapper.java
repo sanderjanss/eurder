@@ -36,11 +36,11 @@ public class OrderMapper {
     public OrderDTO toOrderDTO(Order order) {
         List<ItemGroup> itemGroupList = order.getListOfItemGroups();
 
-        return new OrderDTO.OrderDTOBuilder()
-                .setOrderId(order.getOrderId())
-                .setCustomerId(order.getCustomerId())
-                .setListOfItemGroups(itemGroupList)
-                .setTotalPrice(calculateTotalPrice(itemGroupList))
+        return OrderDTO.builder()
+                .orderId(order.getOrderId())
+                .customerId(order.getCustomerId())
+                .listOfItemGroups(itemGroupList)
+                .totalPrice(calculateTotalPrice(itemGroupList))
                 .build();
     }
 

@@ -162,6 +162,7 @@ public class DefaultOrderServiceTest {
                 orderService.getOrder(UUID.randomUUID())).isInstanceOf(InvalidUserException.class);
     }
 
+
 //    @Test
 //    public void givenTestOrderDataBase_whenFindingAnOrderByValidUserId_thenReturnNewOrder(){
 //        Assertions.assertThat(orderService

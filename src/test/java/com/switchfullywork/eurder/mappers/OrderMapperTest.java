@@ -72,20 +72,21 @@ class OrderMapperTest {
 
     @Test
     @DisplayName("Calculate the total price of the itemgroups.")
-    void givenAListOfItemGroups_calculateTotalPrice() {
+    public void givenAListOfItemGroups_calculateTotalPrice() {
         Order order = orderMapper.toOrder(validOrderDTO);
         Assertions.assertThat(orderMapper.calculateTotalPrice(order.getListOfItemGroups())).isEqualTo(250);
     }
 
     @Test
     @DisplayName("Count 1 day to the shippingdate when enough items in stock.")
-    void givenAItemGroup_whenEnoughItemsInStock_thenReturnDateIsPlus1() {
+    public void givenAItemGroup_whenEnoughItemsInStock_thenReturnDateIsPlus1() {
         Assertions.assertThat(orderMapper.calculateShippingDate(validItemGroupDTO1)).isEqualTo(LocalDate.now().plusDays(1));
     }
 
     @Test
     @DisplayName("Count 7 days to the shippingdate when not enough items in stock.")
-    void givenAItemGroup_whenNotEnoughItemsInStock_thenReturnDateIsPlus7() {
+    public void givenAItemGroup_whenNotEnoughItemsInStock_thenReturnDateIsPlus7() {
         Assertions.assertThat(orderMapper.calculateShippingDate(validItemGroupDTO2)).isEqualTo(LocalDate.now().plusDays(7));
     }
+
 }

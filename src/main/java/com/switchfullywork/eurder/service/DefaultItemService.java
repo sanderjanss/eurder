@@ -77,7 +77,7 @@ public class DefaultItemService implements ItemService {
 
     public void assertItemAllreadyPartOfDatabase(UUID itemId) {
         if (!itemRepository.contains(itemId)) {
-            throw new ItemAllreadyExistsException("This item is not part of the database.");
+            throw new InvalidItemException("This item is not part of the database.");
         }
     }
 

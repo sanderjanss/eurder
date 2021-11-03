@@ -13,24 +13,27 @@ import com.switchfullywork.eurder.mappers.OrderMapper;
 import com.switchfullywork.eurder.repository.*;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-
+@SpringBootTest
 public class DefaultOrderServiceTest {
 
-
+    @Autowired
     private OrderRepository orderRepository;
-
+    @Autowired
     private UserRepository userRepository;
-
+    @Autowired
     private OrderService orderService;
-
+    @Autowired
     private ItemRepository itemRepository;
-
+    @Autowired
     private OrderMapper orderMapper;
 
     private CreateOrderDTO validOrderDTO;
@@ -47,10 +50,10 @@ public class DefaultOrderServiceTest {
 
     @BeforeEach
     public void before() {
-        orderRepository = new DefaultOrderRepository();
-        userRepository = new DefaultUserRepository();
-        itemRepository = new DefaultItemRepository();
-        orderService = new DefaultOrderService(orderRepository, orderMapper, userRepository, itemRepository);
+//        orderRepository = new DefaultOrderRepository();
+//        userRepository = new DefaultUserRepository();
+//        itemRepository = new DefaultItemRepository();
+//        orderService = new DefaultOrderService(orderRepository, orderMapper, userRepository, itemRepository);
 
         invalidCustomer = new User.UserBuilder()
                 .setFirstName("NoCustomer")
@@ -127,38 +130,43 @@ public class DefaultOrderServiceTest {
                 .setCustomerId(validCustomer.getUserId())
                 .setListOfItemGroups(List.of(invalidItemGroupDTO))
                 .build();
+
+        orderRepository.registerOrder(orderMapper.toOrder(validOrderDTO));
     }
 
     @Test
+    @DisplayName("Invalid order when registered order is null.")
     public void givenTestOrderDatabase_whenRegisteredOrderIsNull_ThenThrowInvalidOrderException() {
-        Assertions.assertThatThrownBy(() -> orderService.registerOrder(null)).isInstanceOf(InvalidOrderException.class);
+        Assertions.assertThatThrownBy(() ->
+                orderService.registerOrder(null)).isInstanceOf(InvalidOrderException.class);
     }
 
     @Test
+    @DisplayName("Invalid user when using an invalid user id.")
     public void givenTestOrderDatabase_whenOrderCustomerIdDoesntMatchAnIdFromTheUserDatabase_ThenThrowInvalidUserException() {
-        Assertions.assertThatThrownBy(() -> orderService.registerOrder(invalidOrder1DTO)).isInstanceOf(InvalidUserException.class);
+        Assertions.assertThatThrownBy(() ->
+                orderService.registerOrder(invalidOrder1DTO)).isInstanceOf(InvalidUserException.class);
     }
 
     @Test
+    @DisplayName("Invalid item when using an invalid item id.")
     public void givenTestOrderDatabase_whenOrderItemIdDoesntMatchAnIdFromTheItemDatabase_ThenThrowInvalidItemException() {
-        Assertions.assertThatThrownBy(() -> orderService.registerOrder(invalidOrder2DTO)).isInstanceOf(InvalidItemException.class);
+        Assertions.assertThatThrownBy(() ->
+                orderService.registerOrder(invalidOrder2DTO)).isInstanceOf(InvalidItemException.class);
+    }
+
+    @Test
+    @DisplayName("Invalid user when retrieving an order by invalid user id.")
+    public void givenTestOrderDataBase_whenFindingAnOrderByInvalidUserId_thenThrowNewInvalidUserException(){
+        Assertions.assertThatThrownBy(() ->
+                orderService.getOrder(UUID.randomUUID())).isInstanceOf(InvalidUserException.class);
     }
 
 //    @Test
-//    public void givenTestOrderDatabase_whenItemGroupIsNull_thenThrowInvalidItemGroupException(){
-//        Assertions.assertThatThrownBy(() -> orderService.registerOrder(order)).isInstanceOf(InvalidItemGroupException.class);
+//    public void givenTestOrderDataBase_whenFindingAnOrderByValidUserId_thenReturnNewOrder(){
+//        Assertions.assertThat(orderService
+//                .getOrder(validCustomer.getUserId()))
+//                .isEqualTo(orderMapper.toOrderDTO(orderRepository.getOrder(validCustomer.getUserId())));
 //    }
-//
-//    @Test
-//    public void givenTestOrderDatabase_whenItemNotInStock_thenSetShippingDatePlusSeven(){
-//
-//    }
-//
-//
-//    @Test
-//    public void givenTestOrderDatabase_whenItemInStock_thenSetShippingDatePlusOne(){
-//
-//    }
-
 
 }

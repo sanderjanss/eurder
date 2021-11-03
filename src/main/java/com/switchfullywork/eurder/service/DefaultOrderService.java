@@ -40,11 +40,14 @@ public class DefaultOrderService implements OrderService {
         if (userRepository.findById(createOrderDTO.getCustomerId()) == null) {
             throw new InvalidUserException("Not a valid User.");
         }
+
         for (CreateItemGroupDTO itemGroup : createOrderDTO.getListOfItemGroups()) {
             if (!itemRepository.contains(itemGroup.getItemId())) {
                 throw new InvalidItemException("Not a valid Item");
             }
         }
+
+
         Order order = orderMapper.toOrder(createOrderDTO);
         orderRepository.registerOrder(order);
         return order.getTotalPrice();

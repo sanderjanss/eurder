@@ -1,7 +1,7 @@
 package com.switchfullywork.eurder.mappers;
 
-import com.switchfullywork.eurder.domain.item.CreateItemDTO;
-import com.switchfullywork.eurder.domain.item.Item;
+import com.switchfullywork.eurder.domain.itemdto.CreateItemRequest;
+import com.switchfullywork.eurder.domain.entity.item.Item;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -9,18 +9,18 @@ import java.util.UUID;
 @Component
 public class ItemMapper {
 
-    public Item toItem(CreateItemDTO createItemDTO) {
+    public Item toItem(CreateItemRequest createItemRequest) {
         var item = new Item.ItemBuilder();
         return item
-                .setName(createItemDTO.getName())
-                .setDescription(createItemDTO.getDescription())
-                .setPrice(createItemDTO.getPrice())
-                .setAmountStock(createItemDTO.getAmountStock())
+                .setName(createItemRequest.getName())
+                .setDescription(createItemRequest.getDescription())
+                .setPrice(createItemRequest.getPrice())
+                .setAmountStock(createItemRequest.getAmountStock())
                 .build();
     }
 
-    public Item toUpdatedItem(CreateItemDTO createItemDTO, UUID itemId) {
-        return new Item(itemId, createItemDTO.getName(), createItemDTO.getDescription(), createItemDTO.getPrice(), createItemDTO.getAmountStock());
+    public Item toUpdatedItem(CreateItemRequest createItemRequest, UUID itemId) {
+        return new Item(itemId, createItemRequest.getName(), createItemRequest.getDescription(), createItemRequest.getPrice(), createItemRequest.getAmountStock());
 
     }
 }

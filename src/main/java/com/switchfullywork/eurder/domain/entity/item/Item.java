@@ -1,4 +1,4 @@
-package com.switchfullywork.eurder.domain.item;
+package com.switchfullywork.eurder.domain.entity.item;
 
 import java.util.Objects;
 import java.util.UUID;

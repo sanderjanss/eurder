@@ -1,6 +1,6 @@
 package com.switchfullywork.eurder.repository;
 
-import com.switchfullywork.eurder.domain.item.Item;
+import com.switchfullywork.eurder.domain.entity.item.Item;
 
 import java.util.UUID;
 

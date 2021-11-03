@@ -1,9 +1,9 @@
 package com.switchfullywork.eurder.service;
 
-import com.switchfullywork.eurder.domain.user.Address;
-import com.switchfullywork.eurder.domain.user.CreateUserDTO;
-import com.switchfullywork.eurder.domain.user.Role;
-import com.switchfullywork.eurder.domain.user.User;
+import com.switchfullywork.eurder.domain.entity.user.Address;
+import com.switchfullywork.eurder.domain.userdto.CreateUserRequest;
+import com.switchfullywork.eurder.domain.entity.user.Role;
+import com.switchfullywork.eurder.domain.entity.user.User;
 import com.switchfullywork.eurder.exceptions.InvalidUserException;
 import com.switchfullywork.eurder.exceptions.NoAuthorizationException;
 import com.switchfullywork.eurder.exceptions.UserAllreadyExistsException;
@@ -30,8 +30,8 @@ class DefaultUserServiceTest {
     private UserMapper userMapper;
     private User customer;
     private User customer2;
-    private CreateUserDTO customerDTO;
-    private CreateUserDTO adminDTO;
+    private CreateUserRequest customerDTO;
+    private CreateUserRequest adminDTO;
     private User fakeAdmin;
     private User admin;
 
@@ -52,7 +52,7 @@ class DefaultUserServiceTest {
 
     @Test
     public void givenATestDatabase_whenAUserRegistersAsAnAdmin_thenThrowNoAutorizationException() {
-        adminDTO = CreateUserDTO.builder()
+        adminDTO = CreateUserRequest.builder()
                 .firstName("AdminDTO")
                 .lastName("Janssens")
                 .emailAddress("AdminTestDTO@email.com")
@@ -66,7 +66,7 @@ class DefaultUserServiceTest {
 
     @Test
     public void givenATestDatabase_whenAUserRegistersAsAnExistingCustomer_thenThrowUserAllreadyExistsException() {
-        customerDTO = CreateUserDTO.builder()
+        customerDTO = CreateUserRequest.builder()
                 .firstName("CustomerDTO")
                 .lastName("Janssens")
                 .emailAddress("CustomerTestDTO@email.com")

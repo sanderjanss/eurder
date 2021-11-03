@@ -1,4 +1,4 @@
-package com.switchfullywork.eurder.domain.item;
+package com.switchfullywork.eurder.domain.itemdto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,8 +10,8 @@ import java.util.UUID;
 @Data
 @Builder
 @AllArgsConstructor
-public class CreateItemGroupDTO {
-
+public class ItemGroupResponse {
+    private final UUID itemGroupId;
     private final UUID itemId;
     private final int amount;
     private final LocalDate shippingDate;

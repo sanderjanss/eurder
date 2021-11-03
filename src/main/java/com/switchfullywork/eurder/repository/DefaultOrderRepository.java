@@ -1,6 +1,6 @@
 package com.switchfullywork.eurder.repository;
 
-import com.switchfullywork.eurder.domain.order.Order;
+import com.switchfullywork.eurder.domain.entity.order.Order;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

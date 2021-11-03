@@ -1,6 +1,6 @@
-package com.switchfullywork.eurder.domain.order;
+package com.switchfullywork.eurder.domain.entity.order;
 
-import com.switchfullywork.eurder.domain.item.ItemGroup;
+import com.switchfullywork.eurder.domain.entity.item.ItemGroup;
 
 import java.util.List;
 import java.util.UUID;

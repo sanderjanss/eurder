@@ -1,9 +1,9 @@
 package com.switchfullywork.eurder.mappers;
 
-import com.switchfullywork.eurder.domain.item.CreateItemGroupDTO;
-import com.switchfullywork.eurder.domain.item.Item;
-import com.switchfullywork.eurder.domain.order.CreateOrderDTO;
-import com.switchfullywork.eurder.domain.order.Order;
+import com.switchfullywork.eurder.domain.itemdto.CreateItemGroupRequest;
+import com.switchfullywork.eurder.domain.entity.item.Item;
+import com.switchfullywork.eurder.domain.orderdto.CreateOrderRequest;
+import com.switchfullywork.eurder.domain.entity.order.Order;
 import com.switchfullywork.eurder.repository.ItemRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -20,9 +20,9 @@ import java.util.UUID;
 @SpringBootTest
 class OrderMapperTest {
 
-    private CreateOrderDTO validOrderDTO;
-    private CreateItemGroupDTO validItemGroupDTO1;
-    private CreateItemGroupDTO validItemGroupDTO2;
+    private CreateOrderRequest validOrderDTO;
+    private CreateItemGroupRequest validItemGroupDTO1;
+    private CreateItemGroupRequest validItemGroupDTO2;
 
     @Autowired
     private OrderMapper orderMapper;
@@ -49,18 +49,18 @@ class OrderMapperTest {
         itemRepository.registerItem(validItem);
         itemRepository.registerItem(validItem2);
 
-        validItemGroupDTO1 = CreateItemGroupDTO.builder()
+        validItemGroupDTO1 = CreateItemGroupRequest.builder()
                 .itemId(validItem.getItemId())
                 .amount(5)
                 .shippingDate(LocalDate.now())
                 .build();
-        validItemGroupDTO2 = CreateItemGroupDTO.builder()
+        validItemGroupDTO2 = CreateItemGroupRequest.builder()
                 .itemId(validItem2.getItemId())
                 .amount(5)
                 .shippingDate(LocalDate.now())
                 .build();
 
-        validOrderDTO = CreateOrderDTO.builder()
+        validOrderDTO = CreateOrderRequest.builder()
                 .customerId(UUID.randomUUID())
                 .listOfItemGroups(List.of(validItemGroupDTO1, validItemGroupDTO2))
                 .build();

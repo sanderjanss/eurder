@@ -1,6 +1,6 @@
 package com.switchfullywork.eurder.repository;
 
-import com.switchfullywork.eurder.domain.item.Item;
+import com.switchfullywork.eurder.domain.entity.item.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;

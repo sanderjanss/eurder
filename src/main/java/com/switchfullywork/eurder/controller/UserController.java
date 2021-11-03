@@ -1,7 +1,7 @@
 package com.switchfullywork.eurder.controller;
 
-import com.switchfullywork.eurder.domain.user.CreateUserDTO;
-import com.switchfullywork.eurder.domain.user.UserDTO;
+import com.switchfullywork.eurder.domain.userdto.CreateUserRequest;
+import com.switchfullywork.eurder.domain.userdto.UserResponse;
 import com.switchfullywork.eurder.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,17 +27,17 @@ public class UserController {
 
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public List<UserDTO> getAllCustomers(@RequestHeader(value = "adminId", required = false) UUID adminId,
-                                         @RequestParam(value = "memberId", required = false) UUID memberId) {
+    public List<UserResponse> getAllCustomers(@RequestHeader(value = "adminId", required = false) UUID adminId,
+                                              @RequestParam(value = "memberId", required = false) UUID memberId) {
         logger.info("Retrieving the customerlist.");
-        List<UserDTO> userDTOList = userService.getAllCustomers(adminId, memberId);
-        logger.info(String.format("Retrieved %s customers.", userDTOList.size()));
-        return userDTOList;
+        List<UserResponse> userResponseList = userService.getAllCustomers(adminId, memberId);
+        logger.info(String.format("Retrieved %s customers.", userResponseList.size()));
+        return userResponseList;
     }
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerCustomer(@RequestBody CreateUserDTO user) {
+    public void registerCustomer(@RequestBody CreateUserRequest user) {
         logger.info("Registering new user.");
         userService.registerCustomer(user);
         logger.info("New user registered.");

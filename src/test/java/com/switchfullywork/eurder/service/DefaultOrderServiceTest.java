@@ -1,11 +1,11 @@
 package com.switchfullywork.eurder.service;
 
-import com.switchfullywork.eurder.domain.item.CreateItemGroupDTO;
-import com.switchfullywork.eurder.domain.item.Item;
-import com.switchfullywork.eurder.domain.order.CreateOrderDTO;
-import com.switchfullywork.eurder.domain.user.Address;
-import com.switchfullywork.eurder.domain.user.Role;
-import com.switchfullywork.eurder.domain.user.User;
+import com.switchfullywork.eurder.domain.itemdto.CreateItemGroupRequest;
+import com.switchfullywork.eurder.domain.entity.item.Item;
+import com.switchfullywork.eurder.domain.orderdto.CreateOrderRequest;
+import com.switchfullywork.eurder.domain.entity.user.Address;
+import com.switchfullywork.eurder.domain.entity.user.Role;
+import com.switchfullywork.eurder.domain.entity.user.User;
 import com.switchfullywork.eurder.exceptions.InvalidItemException;
 import com.switchfullywork.eurder.exceptions.InvalidOrderException;
 import com.switchfullywork.eurder.exceptions.InvalidUserException;
@@ -36,12 +36,12 @@ public class DefaultOrderServiceTest {
     @Autowired
     private OrderMapper orderMapper;
 
-    private CreateOrderDTO validOrderDTO;
-    private CreateOrderDTO invalidOrder1DTO;
-    private CreateOrderDTO invalidOrder2DTO;
-    private CreateItemGroupDTO validItemGroupDTO1;
-    private CreateItemGroupDTO validItemGroupDTO2;
-    private CreateItemGroupDTO invalidItemGroupDTO;
+    private CreateOrderRequest validOrderDTO;
+    private CreateOrderRequest invalidOrder1DTO;
+    private CreateOrderRequest invalidOrder2DTO;
+    private CreateItemGroupRequest validItemGroupDTO1;
+    private CreateItemGroupRequest validItemGroupDTO2;
+    private CreateItemGroupRequest invalidItemGroupDTO;
     private User validCustomer;
     private User invalidCustomer;
     private Item validItem;
@@ -55,26 +55,26 @@ public class DefaultOrderServiceTest {
 //        itemRepository = new DefaultItemRepository();
 //        orderService = new DefaultOrderService(orderRepository, orderMapper, userRepository, itemRepository);
 
-        invalidCustomer = new User.UserBuilder()
-                .setFirstName("NoCustomer")
-                .setLastName("NoCustomer")
-                .setEmailAddress("NoCustomer@eurder.com")
-                .setPhoneNumber("0411111111")
-                .setRole(Role.CUSTOMER)
-                .setAddress(Address.builder()
+        invalidCustomer = User.builder()
+                .firstName("NoCustomer")
+                .lastName("NoCustomer")
+                .emailAddress("NoCustomer@eurder.com")
+                .phoneNumber("0411111111")
+                .role(Role.CUSTOMER)
+                .address(Address.builder()
                         .streetName("NoCustomerStreet")
                         .houseNumber(1)
                         .postalCode("1000")
                         .city("Brussels")
                         .build())
                 .build();
-        validCustomer = new User.UserBuilder()
-                .setFirstName("TestCustomer")
-                .setLastName("TestCustomer")
-                .setEmailAddress("TestCustomer@eurder.com")
-                .setPhoneNumber("0422222222")
-                .setRole(Role.CUSTOMER)
-                .setAddress(Address.builder()
+        validCustomer = User.builder()
+                .firstName("TestCustomer")
+                .lastName("TestCustomer")
+                .emailAddress("TestCustomer@eurder.com")
+                .phoneNumber("0422222222")
+                .role(Role.CUSTOMER)
+                .address(Address.builder()
                         .streetName("CustomerStreet")
                         .houseNumber(1)
                         .postalCode("1000")
@@ -99,34 +99,34 @@ public class DefaultOrderServiceTest {
         itemRepository.registerItem(validItem);
         itemRepository.registerItem(validItem2);
 
-        validItemGroupDTO1 = CreateItemGroupDTO.builder()
+        validItemGroupDTO1 = CreateItemGroupRequest.builder()
                 .itemId(validItem.getItemId())
                 .amount(5)
                 .shippingDate(LocalDate.now())
                 .build();
-        validItemGroupDTO2 = CreateItemGroupDTO.builder()
+        validItemGroupDTO2 = CreateItemGroupRequest.builder()
                 .itemId(validItem2.getItemId())
                 .amount(5)
                 .shippingDate(LocalDate.now())
                 .build();
 
-        invalidItemGroupDTO = CreateItemGroupDTO.builder()
+        invalidItemGroupDTO = CreateItemGroupRequest.builder()
                 .itemId(UUID.randomUUID())
                 .amount(5)
                 .shippingDate(LocalDate.now())
                 .build();
 
-        validOrderDTO = CreateOrderDTO.builder()
+        validOrderDTO = CreateOrderRequest.builder()
                 .customerId(validCustomer.getUserId())
                 .listOfItemGroups(List.of(validItemGroupDTO1, validItemGroupDTO2))
                 .build();
 
-        invalidOrder1DTO = CreateOrderDTO.builder()
+        invalidOrder1DTO = CreateOrderRequest.builder()
                 .customerId(invalidCustomer.getUserId())
                 .listOfItemGroups(List.of(validItemGroupDTO1))
                 .build();
 
-        invalidOrder2DTO = CreateOrderDTO.builder()
+        invalidOrder2DTO = CreateOrderRequest.builder()
                 .customerId(validCustomer.getUserId())
                 .listOfItemGroups(List.of(invalidItemGroupDTO))
                 .build();

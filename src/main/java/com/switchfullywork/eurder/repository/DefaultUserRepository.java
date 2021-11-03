@@ -1,8 +1,8 @@
 package com.switchfullywork.eurder.repository;
 
-import com.switchfullywork.eurder.domain.user.Address;
-import com.switchfullywork.eurder.domain.user.Role;
-import com.switchfullywork.eurder.domain.user.User;
+import com.switchfullywork.eurder.domain.entity.user.Address;
+import com.switchfullywork.eurder.domain.entity.user.Role;
+import com.switchfullywork.eurder.domain.entity.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -21,13 +21,13 @@ public class DefaultUserRepository implements UserRepository {
 
     public DefaultUserRepository() {
         this.userByIdRepository = new ConcurrentHashMap<>();
-        User admin = new User.UserBuilder()
-                .setFirstName("Admin")
-                .setLastName("Admin")
-                .setEmailAddress("Admin@eurder.com")
-                .setPhoneNumber("0411111111")
-                .setRole(Role.ADMIN)
-                .setAddress(Address.builder()
+        User admin = User.builder()
+                .firstName("Admin")
+                .lastName("Admin")
+                .emailAddress("Admin@eurder.com")
+                .phoneNumber("0411111111")
+                .role(Role.ADMIN)
+                .address(Address.builder()
                         .streetName("AdminStreet")
                         .houseNumber(1)
                         .postalCode("1000")

@@ -1,4 +1,4 @@
-package com.switchfullywork.eurder.domain.user;
+package com.switchfullywork.eurder.domain.entity.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

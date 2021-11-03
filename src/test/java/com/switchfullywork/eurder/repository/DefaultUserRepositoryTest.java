@@ -1,8 +1,8 @@
 package com.switchfullywork.eurder.repository;
 
-import com.switchfullywork.eurder.domain.user.Address;
-import com.switchfullywork.eurder.domain.user.Role;
-import com.switchfullywork.eurder.domain.user.User;
+import com.switchfullywork.eurder.domain.entity.user.Address;
+import com.switchfullywork.eurder.domain.entity.user.Role;
+import com.switchfullywork.eurder.domain.entity.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

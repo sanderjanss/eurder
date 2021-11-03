@@ -1,11 +1,11 @@
 package com.switchfullywork.eurder.service;
 
-import com.switchfullywork.eurder.domain.item.CreateItemDTO;
+import com.switchfullywork.eurder.domain.itemdto.CreateItemRequest;
 
 import java.util.UUID;
 
 public interface ItemService {
-    void registerItem(CreateItemDTO item, UUID userId);
+    void registerItem(CreateItemRequest item, UUID userId);
 
-    void updateItem(CreateItemDTO item, UUID userId, UUID itemId);
+    void updateItem(CreateItemRequest item, UUID userId, UUID itemId);
 }

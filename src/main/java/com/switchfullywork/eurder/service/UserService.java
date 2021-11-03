@@ -1,14 +1,14 @@
 package com.switchfullywork.eurder.service;
 
-import com.switchfullywork.eurder.domain.user.CreateUserDTO;
-import com.switchfullywork.eurder.domain.user.UserDTO;
+import com.switchfullywork.eurder.domain.userdto.CreateUserRequest;
+import com.switchfullywork.eurder.domain.userdto.UserResponse;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface UserService {
 
-    void registerCustomer(CreateUserDTO user);
+    void registerCustomer(CreateUserRequest user);
 
-    List<UserDTO> getAllCustomers(UUID adminId, UUID memberId);
+    List<UserResponse> getAllCustomers(UUID adminId, UUID memberId);
 }

@@ -1,13 +1,13 @@
 package com.switchfullywork.eurder.service;
 
-import com.switchfullywork.eurder.domain.ReportDTO;
-import com.switchfullywork.eurder.domain.order.CreateOrderDTO;
+import com.switchfullywork.eurder.domain.orderdto.ReportResponse;
+import com.switchfullywork.eurder.domain.orderdto.CreateOrderRequest;
 
 import java.util.UUID;
 
 public interface OrderService {
 
-    double registerOrder(CreateOrderDTO order);
+    double registerOrder(CreateOrderRequest order);
 
-    ReportDTO getReport(UUID customerId);
+    ReportResponse getReport(UUID customerId);
 }

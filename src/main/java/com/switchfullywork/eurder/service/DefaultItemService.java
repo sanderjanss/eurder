@@ -1,8 +1,8 @@
 package com.switchfullywork.eurder.service;
 
-import com.switchfullywork.eurder.domain.item.CreateItemDTO;
-import com.switchfullywork.eurder.domain.item.Item;
-import com.switchfullywork.eurder.domain.user.Role;
+import com.switchfullywork.eurder.domain.itemdto.CreateItemRequest;
+import com.switchfullywork.eurder.domain.entity.item.Item;
+import com.switchfullywork.eurder.domain.entity.user.Role;
 import com.switchfullywork.eurder.exceptions.InvalidItemException;
 import com.switchfullywork.eurder.exceptions.InvalidUserException;
 import com.switchfullywork.eurder.exceptions.ItemAllreadyExistsException;
@@ -29,24 +29,24 @@ public class DefaultItemService implements ItemService {
         this.itemMapper = itemMapper;
     }
 
-    public void registerItem(CreateItemDTO createItemDTO, UUID adminId) {
-        assertValidItem(createItemDTO);
-        assertItemNotPartOfDatabase(createItemDTO);
+    public void registerItem(CreateItemRequest createItemRequest, UUID adminId) {
+        assertValidItem(createItemRequest);
+        assertItemNotPartOfDatabase(createItemRequest);
         assertValidUser(adminId);
         assertAuthorizedUser(adminId);
 
-        itemRepository.registerItem(itemMapper.toItem(createItemDTO));
+        itemRepository.registerItem(itemMapper.toItem(createItemRequest));
 
     }
 
     @Override
-    public void updateItem(CreateItemDTO createItemDTO, UUID adminId, UUID itemId) {
-        assertValidItem(createItemDTO);
+    public void updateItem(CreateItemRequest createItemRequest, UUID adminId, UUID itemId) {
+        assertValidItem(createItemRequest);
         assertItemAllreadyPartOfDatabase(itemId);
         assertValidUser(adminId);
         assertAuthorizedUser(adminId);
 
-        itemRepository.updateItem(itemMapper.toUpdatedItem(createItemDTO, itemId));
+        itemRepository.updateItem(itemMapper.toUpdatedItem(createItemRequest, itemId));
     }
 
     private void assertValidUser(UUID userId) {
@@ -62,14 +62,14 @@ public class DefaultItemService implements ItemService {
         }
     }
 
-    private void assertValidItem(CreateItemDTO createItemDTO) {
-        if (createItemDTO == null) {
+    private void assertValidItem(CreateItemRequest createItemRequest) {
+        if (createItemRequest == null) {
             throw new InvalidItemException("Not a valid item.");
         }
     }
 
-    public void assertItemNotPartOfDatabase(CreateItemDTO createItemDTO) {
-        Item item = itemMapper.toItem(createItemDTO);
+    public void assertItemNotPartOfDatabase(CreateItemRequest createItemRequest) {
+        Item item = itemMapper.toItem(createItemRequest);
         if (itemRepository.contains(item)) {
             throw new ItemAllreadyExistsException("This item is allready registered.");
         }

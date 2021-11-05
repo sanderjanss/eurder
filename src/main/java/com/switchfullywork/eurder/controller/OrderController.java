@@ -1,7 +1,7 @@
 package com.switchfullywork.eurder.controller;
 
-import com.switchfullywork.eurder.domain.orderdto.ReportResponse;
 import com.switchfullywork.eurder.domain.orderdto.CreateOrderRequest;
+import com.switchfullywork.eurder.domain.orderdto.ReportResponse;
 import com.switchfullywork.eurder.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +34,7 @@ public class OrderController {
 
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public ReportResponse getOrder(@RequestHeader(value = "customerId") UUID customerId){
+    public ReportResponse getOrder(@RequestHeader(value = "customerId") UUID customerId) {
         return orderService.getReport(customerId);
     }
 

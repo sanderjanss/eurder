@@ -11,4 +11,8 @@ public interface UserService {
     void registerCustomer(CreateUserRequest user);
 
     List<UserResponse> getAllCustomers(UUID adminId, UUID memberId);
+
+    void assertValidUser(UUID userId);
+
+    void assertAuthorizedUser(UUID userId);
 }

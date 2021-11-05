@@ -23,7 +23,7 @@ public class DefaultItemRepository implements ItemRepository {
 
     @Override
     public void registerItem(Item item) {
-        logger.info("Registed an item.");
+        logger.info("Registering an item...");
         itemByIdDatabase.put(item.getItemId(), item);
         logger.info("Registed Item ID: " + item.getItemId());
     }

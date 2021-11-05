@@ -1,15 +1,11 @@
 package com.switchfullywork.eurder.service;
 
-import com.switchfullywork.eurder.domain.itemdto.CreateItemRequest;
 import com.switchfullywork.eurder.domain.entity.item.Item;
-import com.switchfullywork.eurder.domain.entity.user.Role;
+import com.switchfullywork.eurder.domain.itemdto.CreateItemRequest;
 import com.switchfullywork.eurder.exceptions.InvalidItemException;
-import com.switchfullywork.eurder.exceptions.InvalidUserException;
 import com.switchfullywork.eurder.exceptions.ItemAllreadyExistsException;
-import com.switchfullywork.eurder.exceptions.NoAuthorizationException;
 import com.switchfullywork.eurder.mappers.ItemMapper;
 import com.switchfullywork.eurder.repository.ItemRepository;
-import com.switchfullywork.eurder.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,50 +15,39 @@ import java.util.UUID;
 public class DefaultItemService implements ItemService {
 
     private final ItemRepository itemRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
     private final ItemMapper itemMapper;
 
     @Autowired
-    public DefaultItemService(ItemRepository itemRepository, UserRepository userRepository, ItemMapper itemMapper) {
+    public DefaultItemService(ItemRepository itemRepository, UserService userService, ItemMapper itemMapper) {
         this.itemRepository = itemRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
         this.itemMapper = itemMapper;
     }
 
     public void registerItem(CreateItemRequest createItemRequest, UUID adminId) {
         assertValidItem(createItemRequest);
         assertItemNotPartOfDatabase(createItemRequest);
-        assertValidUser(adminId);
-        assertAuthorizedUser(adminId);
+        userService.assertValidUser(adminId);
+        userService.assertAuthorizedUser(adminId);
 
-        itemRepository.registerItem(itemMapper.toItem(createItemRequest));
-
+        Item item = itemMapper.toItem(createItemRequest);
+        itemRepository.registerItem(item);
     }
 
     @Override
     public void updateItem(CreateItemRequest createItemRequest, UUID adminId, UUID itemId) {
         assertValidItem(createItemRequest);
         assertItemAllreadyPartOfDatabase(itemId);
-        assertValidUser(adminId);
-        assertAuthorizedUser(adminId);
+        userService.assertValidUser(adminId);
+        userService.assertAuthorizedUser(adminId);
 
-        itemRepository.updateItem(itemMapper.toUpdatedItem(createItemRequest, itemId));
+        Item updatedItem = itemMapper.toUpdatedItem(createItemRequest, itemId);
+        itemRepository.updateItem(updatedItem);
     }
 
-    private void assertValidUser(UUID userId) {
-        if (userRepository.findById(userId) == null) {
-            throw new InvalidUserException("This account is not part of the database.");
-        }
 
-    }
-
-    private void assertAuthorizedUser(UUID userId) {
-        if (userRepository.findById(userId).getRole() != Role.ADMIN) {
-            throw new NoAuthorizationException("You are not authorized to do this action.");
-        }
-    }
-
-    private void assertValidItem(CreateItemRequest createItemRequest) {
+    public void assertValidItem(CreateItemRequest createItemRequest) {
         if (createItemRequest == null) {
             throw new InvalidItemException("Not a valid item.");
         }

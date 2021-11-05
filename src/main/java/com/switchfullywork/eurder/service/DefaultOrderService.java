@@ -1,16 +1,14 @@
 package com.switchfullywork.eurder.service;
 
-import com.switchfullywork.eurder.domain.orderdto.ReportResponse;
+import com.switchfullywork.eurder.domain.entity.order.Order;
 import com.switchfullywork.eurder.domain.itemdto.CreateItemGroupRequest;
 import com.switchfullywork.eurder.domain.orderdto.CreateOrderRequest;
-import com.switchfullywork.eurder.domain.entity.order.Order;
+import com.switchfullywork.eurder.domain.orderdto.ReportResponse;
 import com.switchfullywork.eurder.exceptions.InvalidItemException;
-import com.switchfullywork.eurder.exceptions.InvalidOrderException;
 import com.switchfullywork.eurder.exceptions.InvalidUserException;
 import com.switchfullywork.eurder.mappers.OrderMapper;
 import com.switchfullywork.eurder.repository.ItemRepository;
 import com.switchfullywork.eurder.repository.OrderRepository;
-import com.switchfullywork.eurder.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,25 +19,20 @@ public class DefaultOrderService implements OrderService {
 
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
-    private final UserRepository userRepository;
     private final ItemRepository itemRepository;
+    private final UserService userService;
 
     @Autowired
-    public DefaultOrderService(OrderRepository orderRepository, OrderMapper orderMapper, UserRepository userRepository, ItemRepository itemRepository) {
+    public DefaultOrderService(OrderRepository orderRepository, OrderMapper orderMapper, ItemRepository itemRepository, UserService userService) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
-        this.userRepository = userRepository;
         this.itemRepository = itemRepository;
+        this.userService = userService;
     }
 
     public double registerOrder(CreateOrderRequest createOrderRequest) {
-        if (createOrderRequest == null) {
-            throw new InvalidOrderException("Not a valid Order.");
-        }
-
-        if (userRepository.findById(createOrderRequest.getCustomerId()) == null) {
-            throw new InvalidUserException("Not a valid User.");
-        }
+        assertValidOrderRequest(createOrderRequest);
+        userService.assertValidUser(createOrderRequest.getCustomerId());
 
         for (CreateItemGroupRequest itemGroup : createOrderRequest.getListOfItemGroups()) {
             if (!itemRepository.contains(itemGroup.getItemId())) {
@@ -55,9 +48,13 @@ public class DefaultOrderService implements OrderService {
 
     @Override
     public ReportResponse getReport(UUID customerId) {
-        if(userRepository.findById(customerId) == null){
-            throw new InvalidUserException("Not a valid user.");
-        }
+        userService.assertValidUser(customerId);
         return orderMapper.toReportDTO(orderRepository.getOrders(customerId));
+    }
+
+    public void assertValidOrderRequest(CreateOrderRequest createOrderRequest){
+        if (createOrderRequest == null) {
+            throw new InvalidUserException("This account is not part of the database.");
+        }
     }
 }

@@ -49,15 +49,17 @@ public class DefaultUserService implements UserService {
     }
 
 
-    private void assertValidUser(UUID userId) {
+    public void assertValidUser(UUID userId) {
         if (userRepository.findById(userId) == null) {
             throw new InvalidUserException("This account is not part of the database.");
         }
     }
 
-    private void assertAuthorizedUser(UUID userId) {
+    public void assertAuthorizedUser(UUID userId) {
         if (userRepository.findById(userId).getRole() != Role.ADMIN) {
             throw new NoAuthorizationException("You are not authorized to do this action.");
         }
     }
+
+
 }

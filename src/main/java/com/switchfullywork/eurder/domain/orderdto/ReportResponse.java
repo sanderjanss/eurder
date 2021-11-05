@@ -1,6 +1,5 @@
 package com.switchfullywork.eurder.domain.orderdto;
 
-import com.switchfullywork.eurder.domain.orderdto.OrderResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

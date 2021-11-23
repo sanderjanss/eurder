@@ -1,8 +1,8 @@
 package com.switchfullywork.eurder.service;
 
-import com.switchfullywork.eurder.domain.userdto.CreateUserRequest;
 import com.switchfullywork.eurder.domain.entity.user.Role;
 import com.switchfullywork.eurder.domain.entity.user.User;
+import com.switchfullywork.eurder.domain.userdto.CreateUserRequest;
 import com.switchfullywork.eurder.domain.userdto.UserResponse;
 import com.switchfullywork.eurder.exceptions.InvalidUserException;
 import com.switchfullywork.eurder.exceptions.NoAuthorizationException;
@@ -11,11 +11,12 @@ import com.switchfullywork.eurder.mappers.UserMapper;
 import com.switchfullywork.eurder.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
+@Transactional
 public class DefaultUserService implements UserService {
 
     private final UserRepository userRepository;
@@ -35,28 +36,31 @@ public class DefaultUserService implements UserService {
             throw new NoAuthorizationException("You are not authorized to do this action.");
         }
         User user = userMapper.toUser(customer);
-        if (userRepository.contains(user)) {
+        if (userRepository.findUserByEmailAddress(user.getEmailAddress()) != null) {
             throw new UserAllreadyExistsException("This emailaddress is allready registered.");
         }
-        userRepository.registerCustomer(user);
+        userRepository.save(user);
     }
 
-    public List<UserResponse> getAllCustomers(UUID adminId, UUID memberId) {
-        assertValidUser(adminId);
-        assertAuthorizedUser(adminId);
+    public List<UserResponse> getAllCustomers() {
+        List<User> customerList = userRepository.findAll().stream().filter(user -> user.getRole() == Role.CUSTOMER).toList();
+        return userMapper.toDtoList(customerList);
+    }
 
-        return userMapper.toDtoList(userRepository.getAllCustomers(memberId));
+    @Override
+    public UserResponse findUserByUserId(Integer userId) {
+        return userMapper.toDto(userRepository.findUserByUserId(userId));
     }
 
 
-    public void assertValidUser(UUID userId) {
-        if (userRepository.findById(userId) == null) {
+    public void assertValidUser(int userId) {
+        if (userRepository.findUserByUserId(userId) == null) {
             throw new InvalidUserException("This account is not part of the database.");
         }
     }
 
-    public void assertAuthorizedUser(UUID userId) {
-        if (userRepository.findById(userId).getRole() != Role.ADMIN) {
+    public void assertAuthorizedUser(int userId) {
+        if (userRepository.findUserByUserId(userId).getRole() != Role.ADMIN) {
             throw new NoAuthorizationException("You are not authorized to do this action.");
         }
     }

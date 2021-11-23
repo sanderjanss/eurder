@@ -9,5 +9,5 @@ public interface OrderService {
 
     double registerOrder(CreateOrderRequest order);
 
-    ReportResponse getReport(UUID customerId);
+    ReportResponse getReport(int customerId);
 }

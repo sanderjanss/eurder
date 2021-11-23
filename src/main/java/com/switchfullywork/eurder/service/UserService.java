@@ -1,5 +1,6 @@
 package com.switchfullywork.eurder.service;
 
+import com.switchfullywork.eurder.domain.entity.user.User;
 import com.switchfullywork.eurder.domain.userdto.CreateUserRequest;
 import com.switchfullywork.eurder.domain.userdto.UserResponse;
 
@@ -10,9 +11,11 @@ public interface UserService {
 
     void registerCustomer(CreateUserRequest user);
 
-    List<UserResponse> getAllCustomers(UUID adminId, UUID memberId);
+    List<UserResponse> getAllCustomers();
 
-    void assertValidUser(UUID userId);
+    UserResponse findUserByUserId(Integer userId);
 
-    void assertAuthorizedUser(UUID userId);
+    void assertValidUser(int userId);
+
+    void assertAuthorizedUser(int userId);
 }

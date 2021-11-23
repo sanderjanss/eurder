@@ -11,7 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ItemResponse {
 
-    private final UUID itemId;
+    private final int itemId;
     private final String name;
     private final String description;
     private final double price;

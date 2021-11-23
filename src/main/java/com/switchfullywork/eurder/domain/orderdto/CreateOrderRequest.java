@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CreateOrderRequest {
 
-    private final UUID customerId;
+    private final Integer customerId;
     private final List<CreateItemGroupRequest> listOfItemGroups;
 
 }

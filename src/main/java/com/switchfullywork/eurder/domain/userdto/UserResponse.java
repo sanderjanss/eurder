@@ -12,11 +12,11 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 public class UserResponse {
-    private final UUID userId;
+    private final int userId;
     private final String firstName;
     private final String lastName;
     private final String emailAddress;
-    private final Address address;
+    private final AddressResponse address;
     private final String phoneNumber;
     private final Role role;
 

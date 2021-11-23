@@ -1,12 +1,11 @@
 package com.switchfullywork.eurder.repository;
 
 import com.switchfullywork.eurder.domain.entity.order.Order;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface OrderRepository {
+public interface OrderRepository extends CrudRepository<Order, Integer> {
 
-    void registerOrder(Order order);
-    List<Order> getOrders(UUID customerId);
+    List<Order> findAllByOrderId(int customerId);
 }

@@ -3,6 +3,7 @@ package com.switchfullywork.eurder.controller;
 import com.switchfullywork.eurder.domain.userdto.CreateUserRequest;
 import com.switchfullywork.eurder.domain.userdto.UserResponse;
 import com.switchfullywork.eurder.service.UserService;
+import com.switchfullywork.eurder.switchsecure.SecurityGuard;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,22 @@ public class UserController {
 
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public List<UserResponse> getAllCustomers(@RequestHeader(value = "adminId", required = false) UUID adminId,
-                                              @RequestParam(value = "memberId", required = false) UUID memberId) {
+    @SecurityGuard(SecurityGuard.ApiUserRole.ADMIN)
+    public List<UserResponse> getAllCustomers(){
         logger.info("Retrieving the customerlist.");
-        List<UserResponse> userResponseList = userService.getAllCustomers(adminId, memberId);
+        List<UserResponse> userResponseList = userService.getAllCustomers();
         logger.info(String.format("Retrieved %s customers.", userResponseList.size()));
         return userResponseList;
+    }
+
+    @GetMapping(produces = "application/json", path = "/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    @SecurityGuard(SecurityGuard.ApiUserRole.ADMIN)
+    public UserResponse findUserByUserId(@PathVariable(name = "userId") int userId){
+        logger.info("Retrieving a customer.");
+        UserResponse userResponse = userService.findUserByUserId(userId);
+        logger.info(String.format("Retrieved customer with id %s.", userResponse.getUserId()));
+        return userResponse;
     }
 
     @PostMapping(consumes = "application/json")

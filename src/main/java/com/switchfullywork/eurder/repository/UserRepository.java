@@ -1,19 +1,15 @@
 package com.switchfullywork.eurder.repository;
 
 import com.switchfullywork.eurder.domain.entity.user.User;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface UserRepository {
+public interface UserRepository extends CrudRepository<User, Integer> {
 
-    boolean contains(User user);
+    User findUserByUserId(int id);
 
-    User findById(UUID id);
+    List<User>findAll();
 
-    void registerCustomer(User user);
-
-    void registerAdmin(User user);
-
-    List<User> getAllCustomers(UUID userIdOrNull);
+    User findUserByEmailAddress(String email);
 }

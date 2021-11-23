@@ -1,5 +1,6 @@
 package com.switchfullywork.eurder.service;
 
+import com.switchfullywork.eurder.domain.entity.item.ItemGroup;
 import com.switchfullywork.eurder.domain.entity.order.Order;
 import com.switchfullywork.eurder.domain.itemdto.CreateItemGroupRequest;
 import com.switchfullywork.eurder.domain.orderdto.CreateOrderRequest;
@@ -11,10 +12,10 @@ import com.switchfullywork.eurder.repository.ItemRepository;
 import com.switchfullywork.eurder.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class DefaultOrderService implements OrderService {
 
     private final OrderRepository orderRepository;
@@ -28,6 +29,7 @@ public class DefaultOrderService implements OrderService {
         this.orderMapper = orderMapper;
         this.itemRepository = itemRepository;
         this.userService = userService;
+
     }
 
     public double registerOrder(CreateOrderRequest createOrderRequest) {
@@ -35,21 +37,24 @@ public class DefaultOrderService implements OrderService {
         userService.assertValidUser(createOrderRequest.getCustomerId());
 
         for (CreateItemGroupRequest itemGroup : createOrderRequest.getListOfItemGroups()) {
-            if (!itemRepository.contains(itemGroup.getItemId())) {
+            if (itemRepository.findItemByItemId(itemGroup.getItemId()) == null) {
                 throw new InvalidItemException("Not a valid Item");
             }
         }
 
 
         Order order = orderMapper.toOrder(createOrderRequest);
-        orderRepository.registerOrder(order);
+        for (ItemGroup itemGroup : orderMapper.toItemGroupList(createOrderRequest.getListOfItemGroups())) {
+                order.addItemGroup(itemGroup);
+        };
+        orderRepository.save(order);
         return order.getTotalPrice();
     }
 
     @Override
-    public ReportResponse getReport(UUID customerId) {
+    public ReportResponse getReport(int customerId) {
         userService.assertValidUser(customerId);
-        return orderMapper.toReportDTO(orderRepository.getOrders(customerId));
+        return orderMapper.toReportDTO(orderRepository.findAllByOrderId(customerId));
     }
 
     public void assertValidOrderRequest(CreateOrderRequest createOrderRequest){

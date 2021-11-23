@@ -2,6 +2,7 @@ package com.switchfullywork.eurder.controller;
 
 import com.switchfullywork.eurder.domain.itemdto.CreateItemRequest;
 import com.switchfullywork.eurder.service.ItemService;
+import com.switchfullywork.eurder.switchsecure.SecurityGuard;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -22,17 +23,19 @@ public class ItemController {
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerItem(@RequestBody CreateItemRequest createItemRequest, @RequestHeader(name = "adminId") UUID adminId) {
+    @SecurityGuard(SecurityGuard.ApiUserRole.ADMIN)
+    public void registerItem(@RequestBody CreateItemRequest createItemRequest) {
         logger.info("Registering item.");
-        itemService.registerItem(createItemRequest, adminId);
+        itemService.registerItem(createItemRequest);
         logger.info("Item registered.");
     }
 
     @PutMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public void updateItem(@RequestBody CreateItemRequest createItemRequest, @RequestHeader(name = "adminId") UUID adminId, @RequestParam(value = "itemId") UUID itemId) {
+    @SecurityGuard(SecurityGuard.ApiUserRole.ADMIN)
+    public void updateItem(@RequestBody CreateItemRequest createItemRequest, @RequestParam(value = "itemId") int itemId) {
         logger.info("Updating item.");
-        itemService.updateItem(createItemRequest, adminId, itemId);
+        itemService.updateItem(createItemRequest, itemId);
         logger.info("Updated item.");
     }
 }

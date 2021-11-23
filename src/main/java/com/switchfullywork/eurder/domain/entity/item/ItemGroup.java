@@ -1,28 +1,43 @@
 package com.switchfullywork.eurder.domain.entity.item;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
+@Entity
+@Table(name = "item_group")
 public class ItemGroup {
 
-    private final UUID itemGroupId;
-    private final UUID itemId;
-    private final int amount;
-    private final LocalDate shippingDate;
+    @Id
+    @SequenceGenerator(name = "item_group_item_group_id_seq", sequenceName = "item_group_item_group_id_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_group_item_group_id_seq")
+    private int itemGroupId;
+    @OneToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
+    @Column(name = "amount")
+    private int amount;
+    @Column(name = "shipping_date")
+    private LocalDate shippingDate;
 
-    public ItemGroup(UUID itemId, int amount, LocalDate shippingDate) {
-        this.itemGroupId = UUID.randomUUID();
-        this.itemId = itemId;
+
+
+    public ItemGroup(Item item, int amount, LocalDate shippingDate) {
+        this.item = item;
         this.amount = amount;
-        this.shippingDate = calulateShippingDate(shippingDate);
+        this.shippingDate = shippingDate;
     }
 
-    public UUID getItemGroupId() {
+    public ItemGroup() {
+    }
+
+    public int getItemGroupId() {
         return itemGroupId;
     }
 
-    public UUID getItemId() {
-        return itemId;
+    public Item getItem() {
+        return item;
     }
 
     public int getAmount() {
@@ -37,29 +52,29 @@ public class ItemGroup {
         return shippingDate;
     }
 
-    public static class ItemGroupBuilder {
 
-        private UUID itemid;
+    public static final class Builder {
+        private Item item;
         private int amount;
         private LocalDate shippingDate;
 
-        public ItemGroupBuilder setItemid(UUID itemid) {
-            this.itemid = itemid;
+        public Builder withItem(Item item) {
+            this.item = item;
             return this;
         }
 
-        public ItemGroupBuilder setAmount(int amount) {
+        public Builder withAmount(int amount) {
             this.amount = amount;
             return this;
         }
 
-        public ItemGroupBuilder setShippingDate(LocalDate shippingDate) {
+        public Builder withShippingDate(LocalDate shippingDate) {
             this.shippingDate = shippingDate;
             return this;
         }
 
         public ItemGroup build() {
-            return new ItemGroup(this.itemid, this.amount, this.shippingDate);
+            return new ItemGroup(item, amount, shippingDate);
         }
     }
 }

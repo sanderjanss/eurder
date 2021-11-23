@@ -1,20 +1,11 @@
 package com.switchfullywork.eurder.repository;
 
 import com.switchfullywork.eurder.domain.entity.item.Item;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.UUID;
+public interface ItemRepository extends CrudRepository<Item, Integer> {
 
-public interface ItemRepository {
+    Item findItemByName(String name);
 
-    void registerItem(Item item);
-
-    void updateItem(Item item);
-
-    boolean contains(UUID itemId);
-
-    boolean contains(Item item);
-
-    Item getById(UUID itemId);
-
-    void giveAllItemsWithStockResuplyUrgency();
+    Item findItemByItemId(int itemId);
 }

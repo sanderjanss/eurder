@@ -8,6 +8,7 @@ import com.switchfullywork.eurder.domain.orderdto.CreateOrderRequest;
 import com.switchfullywork.eurder.domain.entity.order.Order;
 import com.switchfullywork.eurder.domain.orderdto.OrderResponse;
 import com.switchfullywork.eurder.repository.ItemRepository;
+import com.switchfullywork.eurder.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,10 +19,12 @@ import java.util.List;
 public class OrderMapper {
 
     private final ItemRepository itemRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public OrderMapper(ItemRepository itemRepository) {
+    public OrderMapper(ItemRepository itemRepository, UserRepository userRepository) {
         this.itemRepository = itemRepository;
+        this.userRepository = userRepository;
     }
 
     public ReportResponse toReportDTO(List<Order> orderList){
@@ -41,10 +44,10 @@ public class OrderMapper {
     public Order toOrder(CreateOrderRequest createOrderRequest) {
         List<ItemGroup> itemGroupList = toItemGroupList(createOrderRequest.getListOfItemGroups());
 
-        return new Order.OrderBuilder()
-                .setCustomerId(createOrderRequest.getCustomerId())
-                .setListOfItemGroups(itemGroupList)
-                .setTotalPrice(calculateTotalPricePerOrder(itemGroupList))
+        return new Order.Builder()
+                .withUser(userRepository.findUserByUserId(createOrderRequest.getCustomerId()))
+                .withListOfItemGroups(itemGroupList)
+                .withTotalPrice(calculateTotalPricePerOrder(itemGroupList))
                 .build();
     }
 
@@ -53,7 +56,7 @@ public class OrderMapper {
 
         return OrderResponse.builder()
                 .orderId(order.getOrderId())
-                .customerId(order.getCustomerId())
+                .user(userRepository.findUserByUserId(order.getUser().getUserId()))
                 .listOfItemGroups(itemGroupList)
                 .totalPrice(calculateTotalPricePerOrder(itemGroupList))
                 .build();
@@ -68,16 +71,16 @@ public class OrderMapper {
     }
 
     public ItemGroup toItemGroup(CreateItemGroupRequest createItemGroupRequest) {
-        return new ItemGroup.ItemGroupBuilder()
-                .setItemid(createItemGroupRequest.getItemId())
-                .setAmount(createItemGroupRequest.getAmount())
-                .setShippingDate(calculateShippingDate(createItemGroupRequest))
+        return new ItemGroup.Builder()
+                .withItem(itemRepository.findItemByItemId(createItemGroupRequest.getItemId()))
+                .withAmount(createItemGroupRequest.getAmount())
+                .withShippingDate(calculateShippingDate(createItemGroupRequest))
                 .build();
     }
 
     public ItemGroupResponse toItemGroupDTO(ItemGroup itemGroup) {
         return ItemGroupResponse.builder()
-                .itemGroupId(itemGroup.getItemId())
+                .itemGroupId(itemGroup.getItemGroupId())
                 .amount(itemGroup.getAmount())
                 .shippingDate(itemGroup.getShippingDate())
                 .build();
@@ -96,18 +99,18 @@ public class OrderMapper {
     public double calculateTotalPricePerOrder(List<ItemGroup> itemGroupList) {
         double totalPrice = 0;
         for (ItemGroup itemGroup : itemGroupList) {
-            if (itemRepository.contains(itemGroup.getItemId())) {
-                totalPrice += itemRepository.getById(itemGroup.getItemId()).getPrice() * itemGroup.getAmount();
-            }
+                totalPrice += itemGroup.getItem().getPrice() * itemGroup.getAmount();
+
         }
         return totalPrice;
     }
 
     public LocalDate calculateShippingDate(CreateItemGroupRequest createItemGroupRequest) {
-        if (itemRepository.getById(createItemGroupRequest.getItemId()).getAmountStock() > createItemGroupRequest.getAmount()) {
-            return createItemGroupRequest.getShippingDate().plusDays(1);
+        LocalDate shippingDate = LocalDate.now();
+        if (itemRepository.findItemByItemId(createItemGroupRequest.getItemId()).getAmountStock() > createItemGroupRequest.getAmount()) {
+            return shippingDate.plusDays(1);
         }
-        return createItemGroupRequest.getShippingDate().plusDays(7);
+        return shippingDate.plusDays(7);
     }
 
 }

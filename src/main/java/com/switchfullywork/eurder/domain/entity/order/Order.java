@@ -1,30 +1,44 @@
 package com.switchfullywork.eurder.domain.entity.order;
 
 import com.switchfullywork.eurder.domain.entity.item.ItemGroup;
+import com.switchfullywork.eurder.domain.entity.user.User;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
+@Entity
+@Table(name = "order", schema = "eurder")
 public class Order {
 
-    private final UUID orderId;
-    private final UUID customerId;
-    private final List<ItemGroup> listOfItemGroups;
-    private final double totalPrice;
+    @Id
+    @SequenceGenerator(name = "order_order_id_seq", sequenceName = "order_order_id_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_order_id_seq")
+    @Column(name = "order_id")
+    private int orderId;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "order_id", nullable = false)
+    private List<ItemGroup> listOfItemGroups;
+    private double totalPrice;
 
-    public Order(UUID customerId, List<ItemGroup> listOfItemGroups, double totalPrice) {
-        this.orderId = UUID.randomUUID();
-        this.customerId = customerId;
+    public Order(User user, List<ItemGroup> listOfItemGroups, double totalPrice) {
+        this.user = user;
         this.listOfItemGroups = listOfItemGroups;
         this.totalPrice = totalPrice;
     }
 
-    public UUID getOrderId() {
+    public Order() {
+    }
+
+    public int getOrderId() {
         return orderId;
     }
 
-    public UUID getCustomerId() {
-        return customerId;
+    public User getUser() {
+        return user;
     }
 
     public List<ItemGroup> getListOfItemGroups() {
@@ -35,31 +49,33 @@ public class Order {
         return totalPrice;
     }
 
+    public void addItemGroup(ItemGroup itemGroup){
+        listOfItemGroups.add(itemGroup);
+    }
 
-    public static class OrderBuilder {
-
-        private UUID customerId;
+    public static final class Builder {
+        private User user;
         private List<ItemGroup> listOfItemGroups;
         private double totalPrice;
 
 
-        public OrderBuilder setCustomerId(UUID customerId) {
-            this.customerId = customerId;
+        public Builder withUser(User user) {
+            this.user = user;
             return this;
         }
 
-        public OrderBuilder setListOfItemGroups(List<ItemGroup> listOfItemGroups) {
+        public Builder withListOfItemGroups(List<ItemGroup> listOfItemGroups) {
             this.listOfItemGroups = listOfItemGroups;
             return this;
         }
 
-        public OrderBuilder setTotalPrice(double totalPrice) {
+        public Builder withTotalPrice(double totalPrice) {
             this.totalPrice = totalPrice;
             return this;
         }
 
         public Order build() {
-            return new Order(this.customerId, this.listOfItemGroups, this.totalPrice);
+            return new Order(user, listOfItemGroups, totalPrice);
         }
     }
 }

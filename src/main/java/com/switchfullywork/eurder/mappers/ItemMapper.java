@@ -19,8 +19,8 @@ public class ItemMapper {
                 .build();
     }
 
-    public Item toUpdatedItem(CreateItemRequest createItemRequest, UUID itemId) {
-        return new Item(itemId, createItemRequest.getName(), createItemRequest.getDescription(), createItemRequest.getPrice(), createItemRequest.getAmountStock());
+    public Item toUpdatedItem(CreateItemRequest createItemRequest) {
+        return new Item(createItemRequest.getName(), createItemRequest.getDescription(), createItemRequest.getPrice(), createItemRequest.getAmountStock());
 
     }
 }

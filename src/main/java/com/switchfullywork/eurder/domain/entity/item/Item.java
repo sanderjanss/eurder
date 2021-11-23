@@ -1,33 +1,38 @@
 package com.switchfullywork.eurder.domain.entity.item;
 
+import javax.persistence.*;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
+@Table(name = "item")
 public class Item {
 
-    private final UUID itemId;
-    private final String name;
-    private final String description;
-    private final double price;
-    private final int amountStock;
+    @Id
+    @SequenceGenerator(name = "item_item_id_seq", sequenceName = "item_item_id_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_item_id_seq")
+    @Column(name = "item_id")
+    private int itemId;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "price")
+    private double price;
+    @Column(name = "amount_stock")
+    private int amountStock;
 
     public Item(String name, String description, double price, int amountStock) {
-        this.itemId = UUID.randomUUID();
         this.name = name;
         this.description = description;
         this.price = price;
         this.amountStock = amountStock;
     }
 
-    public Item(UUID itemId, String name, String description, double price, int amountStock) {
-        this.itemId = itemId;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.amountStock = amountStock;
+    public Item() {
     }
 
-    public UUID getItemId() {
+    public int getItemId() {
         return itemId;
     }
 
@@ -69,6 +74,13 @@ public class Item {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public void updateItem(Item item){
+        this.name = item.name;
+        this.description = item.description;
+        this.price = item.price;
+        this.amountStock = item.amountStock;
     }
 
     public static class ItemBuilder {

@@ -8,10 +8,10 @@ import com.switchfullywork.eurder.mappers.ItemMapper;
 import com.switchfullywork.eurder.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class DefaultItemService implements ItemService {
 
     private final ItemRepository itemRepository;
@@ -25,25 +25,22 @@ public class DefaultItemService implements ItemService {
         this.itemMapper = itemMapper;
     }
 
-    public void registerItem(CreateItemRequest createItemRequest, UUID adminId) {
+    public void registerItem(CreateItemRequest createItemRequest) {
         assertValidItem(createItemRequest);
         assertItemNotPartOfDatabase(createItemRequest);
-        userService.assertValidUser(adminId);
-        userService.assertAuthorizedUser(adminId);
 
         Item item = itemMapper.toItem(createItemRequest);
-        itemRepository.registerItem(item);
+        itemRepository.save(item);
     }
 
     @Override
-    public void updateItem(CreateItemRequest createItemRequest, UUID adminId, UUID itemId) {
+    public void updateItem(CreateItemRequest createItemRequest, int itemId) {
         assertValidItem(createItemRequest);
         assertItemAllreadyPartOfDatabase(itemId);
-        userService.assertValidUser(adminId);
-        userService.assertAuthorizedUser(adminId);
+        Item itemToUpdate = itemRepository.findItemByItemId(itemId);
+        Item updatedItem = itemMapper.toUpdatedItem(createItemRequest);
+        itemToUpdate.updateItem(updatedItem);
 
-        Item updatedItem = itemMapper.toUpdatedItem(createItemRequest, itemId);
-        itemRepository.updateItem(updatedItem);
     }
 
 
@@ -55,13 +52,13 @@ public class DefaultItemService implements ItemService {
 
     public void assertItemNotPartOfDatabase(CreateItemRequest createItemRequest) {
         Item item = itemMapper.toItem(createItemRequest);
-        if (itemRepository.contains(item)) {
+        if (itemRepository.findItemByName(item.getName()) != null) {
             throw new ItemAllreadyExistsException("This item is allready registered.");
         }
     }
 
-    public void assertItemAllreadyPartOfDatabase(UUID itemId) {
-        if (!itemRepository.contains(itemId)) {
+    public void assertItemAllreadyPartOfDatabase(int itemId) {
+        if (itemRepository.findItemByItemId(itemId) == null) {
             throw new InvalidItemException("This item is not part of the database.");
         }
     }

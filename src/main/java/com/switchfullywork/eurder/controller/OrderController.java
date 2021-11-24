@@ -39,14 +39,20 @@ public class OrderController {
     @ResponseStatus(HttpStatus.OK)
     @SecurityGuard(SecurityGuard.ApiUserRole.ADMIN)
     public List<OrderResponse> getAllOrders() {
-        return orderService.getAllOrders();
+        logger.info("Asking up all orders.");
+        List<OrderResponse> orderResponses = orderService.getAllOrders();
+        logger.info("Retrieved all orders.");
+        return orderResponses;
     }
 
     @GetMapping(produces = "application/json", path = "/customers/{customerId}")
     @ResponseStatus(HttpStatus.OK)
     @SecurityGuard(SecurityGuard.ApiUserRole.CUSTOMER)
     public ReportResponse getReport(@PathVariable(value = "customerId") int customerId) {
-        return orderService.getReport(customerId);
+        logger.info("Asking up report for customer id: " + customerId);
+        ReportResponse reportResponse = orderService.getReport(customerId);
+        logger.info("Retrieved report for customer id: " + customerId);
+        return reportResponse;
     }
 
 }

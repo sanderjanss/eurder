@@ -1,5 +1,6 @@
 package com.switchfullywork.eurder.mappers;
 
+import com.switchfullywork.eurder.domain.itemdto.ShortenedItemResponse;
 import com.switchfullywork.eurder.domain.orderdto.ReportResponse;
 import com.switchfullywork.eurder.domain.itemdto.CreateItemGroupRequest;
 import com.switchfullywork.eurder.domain.entity.item.ItemGroup;
@@ -52,19 +53,19 @@ public class OrderMapper {
     }
 
     public OrderResponse toOrderDTO(Order order) {
-        List<ItemGroup> itemGroupList = order.getListOfItemGroups();
+        List<ItemGroupResponse> itemGroupList = toItemGroupDTOList(order.getListOfItemGroups());
 
         return OrderResponse.builder()
                 .orderId(order.getOrderId())
-                .user(userRepository.findUserByUserId(order.getUser().getUserId()))
                 .listOfItemGroups(itemGroupList)
-                .totalPrice(calculateTotalPricePerOrder(itemGroupList))
+                .totalPrice(calculateTotalPricePerOrder(order.getListOfItemGroups()))
                 .build();
     }
 
     public List<ItemGroup> toItemGroupList(List<CreateItemGroupRequest> createItemGroupRequestList) {
         return createItemGroupRequestList.stream().map(this::toItemGroup).toList();
     }
+
 
     public List<ItemGroupResponse> toItemGroupDTOList(List<ItemGroup> itemGroupList) {
         return itemGroupList.stream().map(this::toItemGroupDTO).toList();
@@ -80,9 +81,15 @@ public class OrderMapper {
 
     public ItemGroupResponse toItemGroupDTO(ItemGroup itemGroup) {
         return ItemGroupResponse.builder()
-                .itemGroupId(itemGroup.getItemGroupId())
+                .shortenedItemResponse(toShortItemDTO(itemGroup))
                 .amount(itemGroup.getAmount())
-                .shippingDate(itemGroup.getShippingDate())
+                .build();
+    }
+
+    public ShortenedItemResponse toShortItemDTO(ItemGroup itemGroup){
+        return ShortenedItemResponse.builder()
+                .name(itemGroup.getItem().getName())
+                .price(itemGroup.getItem().getPrice())
                 .build();
     }
 

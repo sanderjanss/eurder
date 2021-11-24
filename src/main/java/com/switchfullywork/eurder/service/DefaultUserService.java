@@ -21,23 +21,23 @@ public class DefaultUserService implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final ValidationService validationService;
 
     @Autowired
-    public DefaultUserService(UserRepository userRepository, UserMapper userMapper) {
+    public DefaultUserService(UserRepository userRepository, UserMapper userMapper, ValidationService validationService) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.validationService = validationService;
     }
 
     public void registerCustomer(CreateUserRequest customer) {
-        if (customer == null) {
-            throw new InvalidUserException("Invalid user.");
-        }
+        validationService.assertValidUserRequest(customer);
         if (customer.getRole() != Role.CUSTOMER) {
             throw new NoAuthorizationException("You are not authorized to do this action.");
         }
         User user = userMapper.toUser(customer);
         if (userRepository.findUserByEmailAddress(user.getEmailAddress()) != null) {
-            throw new UserAllreadyExistsException("This emailaddress is allready registered.");
+            throw new UserAllreadyExistsException();
         }
         userRepository.save(user);
     }
@@ -51,19 +51,5 @@ public class DefaultUserService implements UserService {
     public UserResponse findUserByUserId(Integer userId) {
         return userMapper.toDto(userRepository.findUserByUserId(userId));
     }
-
-
-    public void assertValidUser(int userId) {
-        if (userRepository.findUserByUserId(userId) == null) {
-            throw new InvalidUserException("This account is not part of the database.");
-        }
-    }
-
-    public void assertAuthorizedUser(int userId) {
-        if (userRepository.findUserByUserId(userId).getRole() != Role.ADMIN) {
-            throw new NoAuthorizationException("You are not authorized to do this action.");
-        }
-    }
-
 
 }

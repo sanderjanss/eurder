@@ -13,9 +13,8 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 public class ItemGroupResponse {
-    private final int itemGroupId;
-    private final Item item;
+
+    private final ShortenedItemResponse shortenedItemResponse;
     private final int amount;
-    private final LocalDate shippingDate;
 
 }

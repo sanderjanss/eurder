@@ -19,7 +19,7 @@ public class Order {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id", nullable = false)
     private List<ItemGroup> listOfItemGroups;
     private double totalPrice;

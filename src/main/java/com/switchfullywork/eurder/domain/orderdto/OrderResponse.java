@@ -2,6 +2,7 @@ package com.switchfullywork.eurder.domain.orderdto;
 
 import com.switchfullywork.eurder.domain.entity.item.ItemGroup;
 import com.switchfullywork.eurder.domain.entity.user.User;
+import com.switchfullywork.eurder.domain.itemdto.ItemGroupResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,8 +16,7 @@ import java.util.UUID;
 public class OrderResponse {
 
     private final int orderId;
-    private final User user;
-    private final List<ItemGroup> listOfItemGroups;
+    private final List<ItemGroupResponse> listOfItemGroups;
     private final double totalPrice;
 
 }

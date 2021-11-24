@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class InvalidUserException extends RuntimeException {
 
-    public InvalidUserException(String message) {
-        super(message);
+    public static final String DEFAULT_MESSAGE = "This is not a valid user.";
+
+    public InvalidUserException() {
+        super(DEFAULT_MESSAGE);
     }
 }

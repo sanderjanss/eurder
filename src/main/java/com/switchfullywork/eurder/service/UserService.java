@@ -15,7 +15,4 @@ public interface UserService {
 
     UserResponse findUserByUserId(Integer userId);
 
-    void assertValidUser(int userId);
-
-    void assertAuthorizedUser(int userId);
 }

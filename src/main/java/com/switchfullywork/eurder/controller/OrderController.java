@@ -1,6 +1,7 @@
 package com.switchfullywork.eurder.controller;
 
 import com.switchfullywork.eurder.domain.orderdto.CreateOrderRequest;
+import com.switchfullywork.eurder.domain.orderdto.OrderResponse;
 import com.switchfullywork.eurder.domain.orderdto.ReportResponse;
 import com.switchfullywork.eurder.service.OrderService;
 import com.switchfullywork.eurder.switchsecure.SecurityGuard;
@@ -25,17 +26,17 @@ public class OrderController {
     @PostMapping(consumes = "application/json", produces = "application/text")
     @ResponseStatus(HttpStatus.CREATED)
     @SecurityGuard(SecurityGuard.ApiUserRole.CUSTOMER)
-    public String registerOrder(@RequestBody CreateOrderRequest createOrderRequest) {
+    public OrderResponse registerOrder(@RequestBody CreateOrderRequest createOrderRequest) {
         logger.info("Registering Order.");
-        double totalPrice = orderService.registerOrder(createOrderRequest);
+        OrderResponse orderResponse = orderService.registerOrder(createOrderRequest);
         logger.info("Order registered.");
-        return "" + totalPrice;
+        return orderResponse;
     }
 
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     @SecurityGuard(SecurityGuard.ApiUserRole.CUSTOMER)
-    public ReportResponse getOrder(@RequestHeader(value = "customerId") int customerId) {
+    public ReportResponse getReport(@RequestHeader(value = "customerId") int customerId) {
         return orderService.getReport(customerId);
     }
 

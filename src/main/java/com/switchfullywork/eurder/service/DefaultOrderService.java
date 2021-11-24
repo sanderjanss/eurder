@@ -22,15 +22,13 @@ public class DefaultOrderService implements OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private final OrderMapper orderMapper;
-    private final ItemRepository itemRepository;
     private final ValidationService validationService;
 
     @Autowired
-    public DefaultOrderService(OrderRepository orderRepository, UserRepository userRepository, OrderMapper orderMapper, ItemRepository itemRepository, ValidationService validationService) {
+    public DefaultOrderService(OrderRepository orderRepository, UserRepository userRepository, OrderMapper orderMapper, ValidationService validationService) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.orderMapper = orderMapper;
-        this.itemRepository = itemRepository;
         this.validationService = validationService;
     }
 

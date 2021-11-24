@@ -1,7 +1,6 @@
 package com.switchfullywork.eurder.repository;
 
 import com.switchfullywork.eurder.domain.entity.item.Item;
-import com.switchfullywork.eurder.domain.itemdto.ItemResponse;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

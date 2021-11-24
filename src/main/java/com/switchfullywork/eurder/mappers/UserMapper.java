@@ -1,7 +1,7 @@
 package com.switchfullywork.eurder.mappers;
 
-import com.switchfullywork.eurder.domain.userdto.CreateUserRequest;
 import com.switchfullywork.eurder.domain.entity.user.User;
+import com.switchfullywork.eurder.domain.userdto.CreateUserRequest;
 import com.switchfullywork.eurder.domain.userdto.UserResponse;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +20,7 @@ public class UserMapper {
         return userList.stream().map(this::toDto).toList();
     }
 
-    public User toUser(CreateUserRequest createUserRequest) {
+    public User toEntity(CreateUserRequest createUserRequest) {
         return new User.Builder()
                 .withFirstName(createUserRequest.getFirstName())
                 .withLastName(createUserRequest.getLastName())

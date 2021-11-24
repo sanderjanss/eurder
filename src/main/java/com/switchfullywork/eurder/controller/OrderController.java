@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -35,8 +37,15 @@ public class OrderController {
 
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
+    @SecurityGuard(SecurityGuard.ApiUserRole.ADMIN)
+    public List<OrderResponse> getAllOrders() {
+        return orderService.getAllOrders();
+    }
+
+    @GetMapping(produces = "application/json", path = "/customers/{customerId}")
+    @ResponseStatus(HttpStatus.OK)
     @SecurityGuard(SecurityGuard.ApiUserRole.CUSTOMER)
-    public ReportResponse getReport(@RequestHeader(value = "customerId") int customerId) {
+    public ReportResponse getReport(@PathVariable(value = "customerId") int customerId) {
         return orderService.getReport(customerId);
     }
 

@@ -8,8 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
 @RestController
 @RequestMapping("/items")
 public class ItemController {
@@ -30,10 +28,10 @@ public class ItemController {
         logger.info("Item registered.");
     }
 
-    @PutMapping(consumes = "application/json")
+    @PutMapping(consumes = "application/json", path = "/{itemId}")
     @ResponseStatus(HttpStatus.OK)
     @SecurityGuard(SecurityGuard.ApiUserRole.ADMIN)
-    public void updateItem(@RequestBody CreateItemRequest createItemRequest, @RequestParam(value = "itemId") int itemId) {
+    public void updateItem(@RequestBody CreateItemRequest createItemRequest, @PathVariable(value = "itemId") int itemId) {
         logger.info("Updating item.");
         itemService.updateItem(createItemRequest, itemId);
         logger.info("Updated item.");

@@ -4,9 +4,6 @@ import com.switchfullywork.eurder.domain.entity.user.Role;
 import com.switchfullywork.eurder.domain.entity.user.User;
 import com.switchfullywork.eurder.domain.userdto.CreateUserRequest;
 import com.switchfullywork.eurder.domain.userdto.UserResponse;
-import com.switchfullywork.eurder.exceptions.InvalidUserException;
-import com.switchfullywork.eurder.exceptions.NoAuthorizationException;
-import com.switchfullywork.eurder.exceptions.UserAllreadyExistsException;
 import com.switchfullywork.eurder.mappers.UserMapper;
 import com.switchfullywork.eurder.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,20 +27,17 @@ public class DefaultUserService implements UserService {
         this.validationService = validationService;
     }
 
-    public void registerCustomer(CreateUserRequest customer) {
-        validationService.assertValidUserRequest(customer);
-        if (customer.getRole() != Role.CUSTOMER) {
-            throw new NoAuthorizationException("You are not authorized to do this action.");
-        }
-        User user = userMapper.toUser(customer);
-        if (userRepository.findUserByEmailAddress(user.getEmailAddress()) != null) {
-            throw new UserAllreadyExistsException();
-        }
-        userRepository.save(user);
+    public void registerCustomer(CreateUserRequest createUserRequest) {
+        validationService.assertValidUserRequest(createUserRequest);
+        userRepository.save(userMapper.toEntity(createUserRequest));
     }
 
     public List<UserResponse> getAllCustomers() {
-        List<User> customerList = userRepository.findAll().stream().filter(user -> user.getRole() == Role.CUSTOMER).toList();
+        List<User> customerList = userRepository
+                .findAll()
+                .stream()
+                .filter(user -> user.getRole() == Role.CUSTOMER)
+                .toList();
         return userMapper.toDtoList(customerList);
     }
 

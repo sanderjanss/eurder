@@ -2,8 +2,6 @@ package com.switchfullywork.eurder.domain.entity.item;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "item_group")
@@ -20,7 +18,6 @@ public class ItemGroup {
     private int amount;
     @Column(name = "shipping_date")
     private LocalDate shippingDate;
-
 
 
     public ItemGroup(Item item, int amount, LocalDate shippingDate) {

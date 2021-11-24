@@ -2,7 +2,6 @@ package com.switchfullywork.eurder.domain.entity.item;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "item")
@@ -76,42 +75,43 @@ public class Item {
         return Objects.hash(name);
     }
 
-    public void updateItem(Item item){
+    public void updateItem(Item item) {
         this.name = item.name;
         this.description = item.description;
         this.price = item.price;
         this.amountStock = item.amountStock;
     }
 
-    public static class ItemBuilder {
 
+    public static final class Builder {
         private String name;
         private String description;
         private double price;
         private int amountStock;
 
-        public ItemBuilder setName(String name) {
+
+        public Builder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public ItemBuilder setDescription(String description) {
+        public Builder withDescription(String description) {
             this.description = description;
             return this;
         }
 
-        public ItemBuilder setPrice(double price) {
+        public Builder withPrice(double price) {
             this.price = price;
             return this;
         }
 
-        public ItemBuilder setAmountStock(int amountStock) {
+        public Builder withAmountStock(int amountStock) {
             this.amountStock = amountStock;
             return this;
         }
 
         public Item build() {
-            return new Item(this.name, this.description, this.price, this.amountStock);
+            return new Item(name, description, price, amountStock);
         }
     }
 }

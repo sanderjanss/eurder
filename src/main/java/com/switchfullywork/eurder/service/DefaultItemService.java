@@ -2,8 +2,6 @@ package com.switchfullywork.eurder.service;
 
 import com.switchfullywork.eurder.domain.entity.item.Item;
 import com.switchfullywork.eurder.domain.itemdto.CreateItemRequest;
-import com.switchfullywork.eurder.exceptions.InvalidItemException;
-import com.switchfullywork.eurder.exceptions.ItemAllreadyExistsException;
 import com.switchfullywork.eurder.mappers.ItemMapper;
 import com.switchfullywork.eurder.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +27,7 @@ public class DefaultItemService implements ItemService {
         validationService.assertValidItemRequest(createItemRequest);
         validationService.assertItemNotPartOfDatabase(createItemRequest);
 
-        Item item = itemMapper.toItem(createItemRequest);
+        Item item = itemMapper.toEntity(createItemRequest);
         itemRepository.save(item);
     }
 
@@ -39,8 +37,7 @@ public class DefaultItemService implements ItemService {
         validationService.assertItemAllreadyPartOfDatabase(itemId);
 
         Item itemToUpdate = itemRepository.findItemByItemId(itemId);
-        Item updatedItem = itemMapper.toUpdatedItem(createItemRequest);
+        Item updatedItem = itemMapper.toEntity(createItemRequest);
         itemToUpdate.updateItem(updatedItem);
-
     }
 }

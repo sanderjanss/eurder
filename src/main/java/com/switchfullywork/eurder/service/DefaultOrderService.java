@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class DefaultOrderService implements OrderService {
@@ -39,13 +41,18 @@ public class DefaultOrderService implements OrderService {
 
         Order order = orderMapper.toOrder(createOrderRequest);
         orderRepository.save(order);
-        return orderMapper.toOrderDTO(order);
+        return orderMapper.toOrderDto(order);
     }
 
     @Override
     public ReportResponse getReport(int customerId) {
         validationService.assertValidUser(customerId);
         User user = userRepository.findUserByUserId(customerId);
-        return orderMapper.toReportDTO(orderRepository.findAllByUser(user));
+        return orderMapper.toReportDto(orderRepository.findAllByUser(user));
+    }
+
+    @Override
+    public List<OrderResponse> getAllOrders() {
+        return orderMapper.toOrderDtoList(orderRepository.findAll());
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -29,7 +28,7 @@ public class UserController {
     @GetMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     @SecurityGuard(SecurityGuard.ApiUserRole.ADMIN)
-    public List<UserResponse> getAllCustomers(){
+    public List<UserResponse> getAllCustomers() {
         logger.info("Retrieving the customerlist.");
         List<UserResponse> userResponseList = userService.getAllCustomers();
         logger.info(String.format("Retrieved %s customers.", userResponseList.size()));
@@ -39,7 +38,7 @@ public class UserController {
     @GetMapping(produces = "application/json", path = "/{userId}")
     @ResponseStatus(HttpStatus.OK)
     @SecurityGuard(SecurityGuard.ApiUserRole.ADMIN)
-    public UserResponse findUserByUserId(@PathVariable(name = "userId") int userId){
+    public UserResponse findUserByUserId(@PathVariable(name = "userId") int userId) {
         logger.info("Retrieving a customer.");
         UserResponse userResponse = userService.findUserByUserId(userId);
         logger.info(String.format("Retrieved customer with id %s.", userResponse.getUserId()));

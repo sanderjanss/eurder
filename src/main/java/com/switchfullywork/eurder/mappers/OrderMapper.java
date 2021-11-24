@@ -1,13 +1,13 @@
 package com.switchfullywork.eurder.mappers;
 
-import com.switchfullywork.eurder.domain.itemdto.ShortenedItemResponse;
-import com.switchfullywork.eurder.domain.orderdto.ReportResponse;
-import com.switchfullywork.eurder.domain.itemdto.CreateItemGroupRequest;
 import com.switchfullywork.eurder.domain.entity.item.ItemGroup;
-import com.switchfullywork.eurder.domain.itemdto.ItemGroupResponse;
-import com.switchfullywork.eurder.domain.orderdto.CreateOrderRequest;
 import com.switchfullywork.eurder.domain.entity.order.Order;
+import com.switchfullywork.eurder.domain.itemdto.CreateItemGroupRequest;
+import com.switchfullywork.eurder.domain.itemdto.ItemGroupResponse;
+import com.switchfullywork.eurder.domain.itemdto.ShortenedItemResponse;
+import com.switchfullywork.eurder.domain.orderdto.CreateOrderRequest;
 import com.switchfullywork.eurder.domain.orderdto.OrderResponse;
+import com.switchfullywork.eurder.domain.orderdto.ReportResponse;
 import com.switchfullywork.eurder.repository.ItemRepository;
 import com.switchfullywork.eurder.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,18 +28,12 @@ public class OrderMapper {
         this.userRepository = userRepository;
     }
 
-    public ReportResponse toReportDTO(List<Order> orderList){
-        List<OrderResponse> orderResponseList = toOrderDTOList(orderList);
+    public ReportResponse toReportDto(List<Order> orderList) {
+        List<OrderResponse> orderResponseList = toOrderDtoList(orderList);
         return ReportResponse.builder()
                 .listOfOrders(orderResponseList)
                 .totalPriceAllOrders(calculateTotalPriceReport(orderResponseList))
                 .build();
-    }
-
-    public List<OrderResponse> toOrderDTOList(List<Order> orderList){
-        return orderList.stream()
-                .map(this::toOrderDTO)
-                .toList();
     }
 
     public Order toOrder(CreateOrderRequest createOrderRequest) {
@@ -52,8 +46,8 @@ public class OrderMapper {
                 .build();
     }
 
-    public OrderResponse toOrderDTO(Order order) {
-        List<ItemGroupResponse> itemGroupList = toItemGroupDTOList(order.getListOfItemGroups());
+    public OrderResponse toOrderDto(Order order) {
+        List<ItemGroupResponse> itemGroupList = toItemGroupDtoList(order.getListOfItemGroups());
 
         return OrderResponse.builder()
                 .orderId(order.getOrderId())
@@ -62,14 +56,12 @@ public class OrderMapper {
                 .build();
     }
 
-    public List<ItemGroup> toItemGroupList(List<CreateItemGroupRequest> createItemGroupRequestList) {
-        return createItemGroupRequestList.stream().map(this::toItemGroup).toList();
+    public List<OrderResponse> toOrderDtoList(List<Order> orderList) {
+        return orderList.stream()
+                .map(this::toOrderDto)
+                .toList();
     }
 
-
-    public List<ItemGroupResponse> toItemGroupDTOList(List<ItemGroup> itemGroupList) {
-        return itemGroupList.stream().map(this::toItemGroupDTO).toList();
-    }
 
     public ItemGroup toItemGroup(CreateItemGroupRequest createItemGroupRequest) {
         return new ItemGroup.Builder()
@@ -79,14 +71,22 @@ public class OrderMapper {
                 .build();
     }
 
-    public ItemGroupResponse toItemGroupDTO(ItemGroup itemGroup) {
+    public List<ItemGroup> toItemGroupList(List<CreateItemGroupRequest> createItemGroupRequestList) {
+        return createItemGroupRequestList.stream().map(this::toItemGroup).toList();
+    }
+
+    public ItemGroupResponse toItemGroupDto(ItemGroup itemGroup) {
         return ItemGroupResponse.builder()
-                .shortenedItemResponse(toShortItemDTO(itemGroup))
+                .shortenedItemResponse(toShortItemDto(itemGroup))
                 .amount(itemGroup.getAmount())
                 .build();
     }
 
-    public ShortenedItemResponse toShortItemDTO(ItemGroup itemGroup){
+    public List<ItemGroupResponse> toItemGroupDtoList(List<ItemGroup> itemGroupList) {
+        return itemGroupList.stream().map(this::toItemGroupDto).toList();
+    }
+
+    public ShortenedItemResponse toShortItemDto(ItemGroup itemGroup) {
         return ShortenedItemResponse.builder()
                 .name(itemGroup.getItem().getName())
                 .price(itemGroup.getItem().getPrice())
@@ -95,9 +95,9 @@ public class OrderMapper {
 
     ///////////////////////////////////////////////////:
 
-    public double calculateTotalPriceReport(List<OrderResponse> orderResponseList){
+    public double calculateTotalPriceReport(List<OrderResponse> orderResponseList) {
         double totalPrice = 0;
-        for(OrderResponse order: orderResponseList){
+        for (OrderResponse order : orderResponseList) {
             totalPrice += order.getTotalPrice();
         }
         return totalPrice;
@@ -106,7 +106,7 @@ public class OrderMapper {
     public double calculateTotalPricePerOrder(List<ItemGroup> itemGroupList) {
         double totalPrice = 0;
         for (ItemGroup itemGroup : itemGroupList) {
-                totalPrice += itemGroup.getItem().getPrice() * itemGroup.getAmount();
+            totalPrice += itemGroup.getItem().getPrice() * itemGroup.getAmount();
 
         }
         return totalPrice;

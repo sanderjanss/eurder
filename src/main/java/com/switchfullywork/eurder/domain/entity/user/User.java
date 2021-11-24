@@ -1,7 +1,5 @@
 package com.switchfullywork.eurder.domain.entity.user;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.Objects;
 

@@ -16,10 +16,6 @@ public class UserMapper {
         this.addressMapper = addressMapper;
     }
 
-    public List<UserResponse> toDtoList(List<User> userList) {
-        return userList.stream().map(this::toDto).toList();
-    }
-
     public User toEntity(CreateUserRequest createUserRequest) {
         return new User.Builder()
                 .withFirstName(createUserRequest.getFirstName())

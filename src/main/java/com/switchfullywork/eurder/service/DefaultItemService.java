@@ -2,11 +2,14 @@ package com.switchfullywork.eurder.service;
 
 import com.switchfullywork.eurder.domain.entity.item.Item;
 import com.switchfullywork.eurder.domain.itemdto.CreateItemRequest;
+import com.switchfullywork.eurder.domain.itemdto.ItemResponse;
 import com.switchfullywork.eurder.mappers.ItemMapper;
 import com.switchfullywork.eurder.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -23,12 +26,13 @@ public class DefaultItemService implements ItemService {
         this.itemMapper = itemMapper;
     }
 
-    public void registerItem(CreateItemRequest createItemRequest) {
+    public ItemResponse registerItem(CreateItemRequest createItemRequest) {
         validationService.assertValidItemRequest(createItemRequest);
         validationService.assertItemNotPartOfDatabase(createItemRequest);
 
         Item item = itemMapper.toEntity(createItemRequest);
         itemRepository.save(item);
+        return itemMapper.toDto(item);
     }
 
     @Override
@@ -39,5 +43,14 @@ public class DefaultItemService implements ItemService {
         Item itemToUpdate = itemRepository.findItemByItemId(itemId);
         Item updatedItem = itemMapper.toEntity(createItemRequest);
         itemToUpdate.updateItem(updatedItem);
+    }
+
+    @Override
+    public List<ItemResponse> getAllItems() {
+        return itemRepository
+                .findAll()
+                .stream()
+                .map(itemMapper::toDto)
+                .toList();
     }
 }

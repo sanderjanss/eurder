@@ -53,6 +53,9 @@ public class DefaultOrderService implements OrderService {
 
     @Override
     public List<OrderResponse> getAllOrders() {
-        return orderMapper.toOrderDtoList(orderRepository.findAll());
+        return orderRepository.findAll()
+                .stream()
+                .map(orderMapper::toOrderDto)
+                .toList();
     }
 }

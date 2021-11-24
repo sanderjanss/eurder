@@ -33,12 +33,12 @@ public class DefaultUserService implements UserService {
     }
 
     public List<UserResponse> getAllCustomers() {
-        List<User> customerList = userRepository
+        return userRepository
                 .findAll()
                 .stream()
                 .filter(user -> user.getRole() == Role.CUSTOMER)
+                .map(userMapper::toDto)
                 .toList();
-        return userMapper.toDtoList(customerList);
     }
 
     @Override
